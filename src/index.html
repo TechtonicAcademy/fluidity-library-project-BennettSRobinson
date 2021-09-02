@@ -5,18 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/index.scss">
-    <title>Document</title>
+    <title>LibraryProject</title>
 </head>
 <body>
-    <nav class="nav">
-        <ul>
-            <li class="nav__title">The Library</li>
-            <li class="nav__tab">Home</li>
-            <li class="nav__tab">Bookshelf</li>
-            <li class="nav__tab">Add Book</li>
-        </ul>
-        <input type="text" class="nav__search"/>
-        <button class="nav__btn">Search</button>
-    </nav>
+    <header>
+        <nav class="navBar">
+            <h1 class="navBar__title">The Library</h1>
+            <ul class="navBar__list">
+                
+                <li class="navBar__list__item ">
+                    <a class="navBar__tab navBar__tab--selector" href="#">Home</a>
+                </li>
+                <li class="navBar__list__item">
+                    <a class="navBar__tab" href="#">Bookshelf</a>
+                </li>
+                <li class="navBar__list__item"> 
+                    <a class="navBar__tab" href="#">Add Book</a>
+                </li>
+            </ul>
+          
+            <input type="text" class="navBar__search" placeholder="Search by Title/Author"/>
+            <button class="navBar__btn">Search</button>
+        </nav>
+    </header>
+    
 </body>
 </html>
