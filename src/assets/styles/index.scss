@@ -1,4 +1,5 @@
-
+$backColor: gray;
+ 
 *{
     box-sizing: border-box;
     margin: 0;
@@ -9,9 +10,9 @@
 .navBar {
     display: flex;
     height: 4rem;
-    background-color: gray;
+    background-color: $backColor;
     align-items: center;
-
+    
     &__list{
         display: flex;
         justify-content: space-around;
@@ -61,7 +62,7 @@
         border-radius: 10px;
         border-color: red;
         color: blue;
-        background-color: gray;
+        background-color: $backColor;
     }
 
     
@@ -87,3 +88,36 @@
     }
 }
 
+.main {
+    align-items: center;
+    text-align: center;
+    height: 400px;
+    background: $backColor;
+    &__title{
+        position: relative;
+        padding: 18px;
+    }
+    &__description{
+        position: relative;
+        padding: 18px;
+    }
+}
+.btn {
+    width: 10%;
+    height: 9%;
+    position: relative;
+    right: 15px;
+    border-radius: 10px;
+    border-color: red;
+    color: turquoise;
+    background-color:$backColor;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    background-color: darken(white, 20%);
+}
