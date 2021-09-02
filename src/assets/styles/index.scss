@@ -6,118 +6,131 @@ $backColor: gray;
     padding: 0;
 
 }
-
-.navBar {
-    display: flex;
-    height: 4rem;
-    background-color: $backColor;
-    align-items: center;
-    
-    &__list{
+//Default media query max-width: 1200px
+@media only screen and (max-width: 1200px), only screen and (max-height: 1025px){
+    .navBar {
         display: flex;
-        justify-content: space-around;
+        height: 4rem;
+        background-color: $backColor;
         align-items: center;
-        list-style: none;
-        height:100%;
-        padding: 0 8rem;
-        width: 50%;
-        position: relative;
-        right: 190px;
-
-        &__item{
+        
+        &__list{
             display: flex;
-            justify-content: left;
+            justify-content: space-around;
             align-items: center;
-            padding: 0 0 0 10px;
-        }  
-    }
-    &__tab{
-        color:#333;
-        text-decoration: none;
-        font-size: 16pt;
-        &:hover{
-            color:black;
+            list-style: none;
+            height:100%;
+            padding: 0 8rem;
+            width: 50%;
+            position: relative;
+            right: 190px;
+    
+            &__item{
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                padding: 0 0 0 10px;
+            }  
         }
-        &--selector{
+        &__tab{
+            color:#333;
+            text-decoration: none;
+            font-size: 16pt;
+            &:hover{
+                color:black;
+            }
+            &--selector{
+                color:white;
+            }
+        }
+        &__title{
+            width: 25%;
+            padding: 0 18px;
+            font-size: 24pt;
+        }
+        &__search{
+            height: 60%;
+            width: 20%;
+            border-radius: 10px;
+            position: relative;
+            right: 20px;
+        }
+        &__btn{
+            height: 60%;
+            width: 5%;
+            position: relative;
+            right: 15px;
+            border-radius: 10px;
+            border-color: red;
+            color: blue;
+            background-color: $backColor;
+        }
+    
+        
+    }
+    .homepage{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-image: url("./pics/library.jpg");
+        height: 400px;
+    
+        &__title {
+            font-size: 60pt;
+            margin: 0 18px;
             color:white;
+            text-shadow: 2px 2px 2px black;
+            
+        }
+        &__info{
+            font-size: 30pt;
+            display: block;
         }
     }
-    &__title{
-        width: 25%;
-        padding: 0 18px;
-        font-size: 24pt;
+    
+    .main {
+        align-items: center;
+        text-align: center;
+        height: 400px;
+        background: $backColor;
+        &__title{
+            position: relative;
+            padding: 18px;
+        }
+        &__description{
+            position: relative;
+            padding: 18px;
+        }
     }
-    &__search{
-        height: 60%;
-        width: 20%;
-        border-radius: 10px;
-        position: relative;
-        right: 20px;
-    }
-    &__btn{
-        height: 60%;
-        width: 5%;
+    .btn {
+        width: 10%;
+        height: 9%;
         position: relative;
         right: 15px;
         border-radius: 10px;
         border-color: red;
-        color: blue;
-        background-color: $backColor;
+        color: turquoise;
+        background-color:$backColor;
     }
-
     
-}
-.homepage{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-image: url("./pics/library.jpg");
-    height: 400px;
-
-    &__title {
-        font-size: 60pt;
-        margin: 0 18px;
-        color:white;
-        text-shadow: 2px 2px 2px black;
-        
-    }
-    &__info{
-        font-size: 30pt;
-        display: block;
+    .footer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 10%;
+        background-color: darken(white, 20%);
     }
 }
 
-.main {
-    align-items: center;
-    text-align: center;
-    height: 400px;
-    background: $backColor;
-    &__title{
-        position: relative;
-        padding: 18px;
-    }
-    &__description{
-        position: relative;
-        padding: 18px;
-    }
-}
-.btn {
-    width: 10%;
-    height: 9%;
-    position: relative;
-    right: 15px;
-    border-radius: 10px;
-    border-color: red;
-    color: turquoise;
-    background-color:$backColor;
-}
 
-.footer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    background-color: darken(white, 20%);
+@media only screen and (max-width: 1020px), only screen and(max-height:769px) {
+    .navBar{
+        background-color: blue;
+        &__list{
+            left: 10px;
+            padding: 0 2rem;
+        }
+    }
 }
