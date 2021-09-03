@@ -134,3 +134,19 @@ $backColor: gray;
         }
     }
 }
+
+@media only screen and (max-height: 375px), only screen 
+and (max-width: 480px) {
+    .navBar{
+        background-color: red;
+        &__list{
+            display: none;;
+        }
+        &__search{
+            display: none;
+        }
+        &__btn{
+            display: none;
+        }
+    }
+}
