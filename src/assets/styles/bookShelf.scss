@@ -68,13 +68,34 @@ $backColor: gray;
             position: relative;
             right: 15px;
             border-radius: 10px;
-            border-color: red;
-            color: blue;
-            background-color: $backColor;
+            border-color: black;
+            color: black;
+            background-color: turquoise;
         }
     
         
     }
+    .second_btn{
+
+        padding: 18px 0;
+        &--hidden{
+            display: none;
+        }
+        &__search{
+            width: 60%;
+            border: solid 1px black;
+            padding: 9px 10px 9px 32px;
+            border-radius: 2rem;
+
+        }
+        &__submit{
+            width: 20%;
+            padding: 9px 10px 9px;
+            border-radius: 2rem;
+            background: turquoise;
+        }
+    }
+
     .title{
         display: flex;
         flex-direction: row;
@@ -91,6 +112,7 @@ $backColor: gray;
         justify-content: space-between;
         align-items: center;
         margin: 10px 30px;
+
         
     }
     .book {
@@ -120,7 +142,9 @@ $backColor: gray;
         }
         
     }
-
+    main {
+        background: #5596e6;
+    }
     .footer{
         display: flex;
         flex-direction: row;
@@ -141,5 +165,61 @@ $backColor: gray;
     }
     .title{
         font-size: 12;
+    }
+}
+
+@media only screen and (max-height: 375px), only screen 
+and (max-width: 480px) {
+    body{
+        overflow-x: hidden;
+    }
+    .navBar{
+        width: 100vw;
+        &__list{
+            display: none;;
+        }
+        &__title {
+            font-size: 17pt;
+            width: 100vw;
+            white-space: nowrap;
+        }
+        &__search{
+            display: none;
+        }
+        &__btn{
+            display: none;
+        }
+        &__burger {
+            display: flex;
+            background: url("./pics/burger.png");
+            background-size: 100% 100%;
+            height: 8vh;
+            width: 10vw;
+            justify-content: center;
+            margin: 0 10px;
+            border-radius: 5px;
+        
+        }
+    }
+    .title {
+        font-size: 18pt;
+        margin-left: 16%;
+    }
+    .book{
+        width: 70vw;
+        height: 75vh;
+    }
+    .second_btn{
+        &--notHidden{
+            display: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    
+    .footer{
+        font-size: 10pt;
+        width:100vw;
     }
 }
