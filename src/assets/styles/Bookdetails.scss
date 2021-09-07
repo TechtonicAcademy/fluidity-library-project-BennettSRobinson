@@ -75,27 +75,33 @@ $backColor: gray;
     
         
     }
+    //Main content
     .bookPg {
         display: flex;
         flex-direction: row;
         align-items: center;
         width: 100%;
         overflow-x: hidden;
+        //Wrappers for the two sections
         &__wrapper{
             display: flex;
             flex-direction: column;
             padding: 20px 20px;
-            margin: 50px 50px;
+            margin: 50px 40px;
             width: 50vw;
+            //star ratings 
             &__stars{
                 display: flex;
                 margin-left: 35%;
+                padding: 25px 0 0 0;
                 font-size: 20pt;
             }
+            //the second wrapper
             &--second{
                 margin-bottom: 10%;
             }
         }
+        //Book Picture
         &__picture{
             display: flex;
             flex-direction: column;
@@ -108,6 +114,7 @@ $backColor: gray;
 
 
         }
+        //The Details of the book
         &__details{
             display: flex;
             flex-direction: column;
@@ -134,11 +141,24 @@ $backColor: gray;
 
     
     }
-    span{
-        white-space: nowrap;
-    }
+    //The color of the stars
     .checked {
         color: orange;
+    }
+
+    .buttons-Wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        &__btns{
+            padding: 10px 20px;
+            margin: 0 10px 30px 10px;
+            width: 20%;
+            padding: 9px 10px 9px;
+            border-radius: 2rem;
+            background: turquoise;
+        }
     }
     
     main {
@@ -164,6 +184,25 @@ $backColor: gray;
     }
     .title{
         font-size: 12;
+    }
+    .bookPg{
+        &__picture{
+            height:75vh;
+        }
+        &__details{
+            &--title{
+                font-size: 25pt;
+            }
+            &--author{
+                font-size: 18pt;
+            }
+            &--published{
+                font-size: 14pt;
+            }
+            &--numPgs{
+                font-size: 13pt;
+            }
+        }
     }
 }
 
