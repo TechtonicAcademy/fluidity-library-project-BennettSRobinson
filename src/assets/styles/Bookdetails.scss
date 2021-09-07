@@ -75,73 +75,92 @@ $backColor: gray;
     
         
     }
-    .second_btn{
-
-        padding: 18px 0;
-        &--hidden{
-            display: none;
+    //Main content
+    .bookPg {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        overflow-x: hidden;
+        //Wrappers for the two sections
+        &__wrapper{
+            display: flex;
+            flex-direction: column;
+            padding: 20px 20px;
+            margin: 50px 40px;
+            width: 50vw;
+            //star ratings 
+            &__stars{
+                display: flex;
+                margin-left: 35%;
+                padding: 25px 0 0 0;
+                font-size: 20pt;
+            }
+            //the second wrapper
+            &--second{
+                margin-bottom: 10%;
+            }
         }
-        &__search{
-            width: 60%;
-            border: solid 1px black;
-            padding: 9px 10px 9px 32px;
-            border-radius: 2rem;
+        //Book Picture
+        &__picture{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45vw;
+            height: 60vh;
+            background-image: url('./pics/CallOfCthulhu.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+
 
         }
-        &__submit{
+        //The Details of the book
+        &__details{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            padding: 0 0 20px 0;
+            &--title{
+                font-size: 30pt;
+            }
+            &--author{
+                font-size: 20pt;
+            }
+            &--published{
+                font-size: 17pt;
+            }
+            &--numPgs{
+                font-size: 15pt;
+            }
+        }
+    
+        &__summary{
+            display: inline-block;
+        }
+
+    
+    }
+    //The color of the stars
+    .checked {
+        color: orange;
+    }
+
+    .buttons-Wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        &__btns{
+            padding: 10px 20px;
+            margin: 0 10px 30px 10px;
             width: 20%;
             padding: 9px 10px 9px;
             border-radius: 2rem;
             background: turquoise;
         }
     }
-
-    .title{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        text-transform: uppercase;
-        margin: 5%;
-    }
-
-    .main {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin: 10px 30px;
-
-        
-    }
-    .book {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 22vw;
-        height: 29vh;
-        padding: 18px 18px;
-        margin: 18px 29px;
-        border: 1px solid black;
-        box-shadow: inset 0px 2px 2px black, inset 0px -2px 2px black;
-        &__picture {
-            display: flex;
-            justify-content: center;
-            background: url("./pics/CallOfCthulhu.jpg");
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 80%;
-            width: 80%;
-            
-        }
-        &__details{
-            white-space: nowrap;
-            font-size: 12pt;
-        }
-        
-    }
+    
     main {
         background: #5596e6;
     }
@@ -165,6 +184,25 @@ $backColor: gray;
     }
     .title{
         font-size: 12;
+    }
+    .bookPg{
+        &__picture{
+            height:75vh;
+        }
+        &__details{
+            &--title{
+                font-size: 25pt;
+            }
+            &--author{
+                font-size: 18pt;
+            }
+            &--published{
+                font-size: 14pt;
+            }
+            &--numPgs{
+                font-size: 13pt;
+            }
+        }
     }
 }
 
@@ -199,22 +237,6 @@ and (max-width: 480px) {
             margin: 0 10px;
             border-radius: 5px;
         
-        }
-    }
-    .title {
-        font-size: 18pt;
-        margin-left: 16%;
-    }
-    .book{
-        width: 70vw;
-        height: 75vh;
-    }
-    .second_btn{
-        &--notHidden{
-            display: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     }
     
