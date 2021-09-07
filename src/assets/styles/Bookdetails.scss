@@ -75,73 +75,72 @@ $backColor: gray;
     
         
     }
-    .second_btn{
-
-        padding: 18px 0;
-        &--hidden{
-            display: none;
-        }
-        &__search{
-            width: 60%;
-            border: solid 1px black;
-            padding: 9px 10px 9px 32px;
-            border-radius: 2rem;
-
-        }
-        &__submit{
-            width: 20%;
-            padding: 9px 10px 9px;
-            border-radius: 2rem;
-            background: turquoise;
-        }
-    }
-
-    .title{
+    .bookPg {
         display: flex;
         flex-direction: row;
-        justify-content: center;
         align-items: center;
-        text-transform: uppercase;
-        margin: 5%;
-    }
-
-    .main {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin: 10px 30px;
-
-        
-    }
-    .book {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 22vw;
-        height: 29vh;
-        padding: 18px 18px;
-        margin: 18px 29px;
-        border: 1px solid black;
-        box-shadow: inset 0px 2px 2px black, inset 0px -2px 2px black;
-        &__picture {
+        width: 100%;
+        overflow-x: hidden;
+        &__wrapper{
             display: flex;
-            justify-content: center;
-            background: url("./pics/CallOfCthulhu.jpg");
-            background-size: contain;
-            background-position: center;
+            flex-direction: column;
+            padding: 20px 20px;
+            margin: 50px 50px;
+            width: 50vw;
+            &__stars{
+                display: flex;
+                margin-left: 35%;
+                font-size: 20pt;
+            }
+            &--second{
+                margin-bottom: 10%;
+            }
+        }
+        &__picture{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45vw;
+            height: 60vh;
+            background-image: url('./pics/CallOfCthulhu.jpg');
             background-repeat: no-repeat;
-            height: 80%;
-            width: 80%;
-            
+            background-position: center;
+
+
         }
         &__details{
-            white-space: nowrap;
-            font-size: 12pt;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            padding: 0 0 20px 0;
+            &--title{
+                font-size: 30pt;
+            }
+            &--author{
+                font-size: 20pt;
+            }
+            &--published{
+                font-size: 17pt;
+            }
+            &--numPgs{
+                font-size: 15pt;
+            }
         }
-        
+    
+        &__summary{
+            display: inline-block;
+        }
+
+    
     }
+    span{
+        white-space: nowrap;
+    }
+    .checked {
+        color: orange;
+    }
+    
     main {
         background: #5596e6;
     }
@@ -199,22 +198,6 @@ and (max-width: 480px) {
             margin: 0 10px;
             border-radius: 5px;
         
-        }
-    }
-    .title {
-        font-size: 18pt;
-        margin-left: 16%;
-    }
-    .book{
-        width: 70vw;
-        height: 75vh;
-    }
-    .second_btn{
-        &--notHidden{
-            display: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     }
     
