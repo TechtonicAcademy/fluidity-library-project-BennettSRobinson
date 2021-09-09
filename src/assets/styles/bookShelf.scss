@@ -112,6 +112,8 @@ $backColor: gray;
         justify-content: space-between;
         align-items: center;
         margin: 10px 30px;
+        overflow-y: scroll;
+        max-height: 700px;
 
         
     }
@@ -125,6 +127,7 @@ $backColor: gray;
         margin: 18px 29px;
         border: 1px solid black;
         box-shadow: inset 0px 2px 2px black, inset 0px -2px 2px black;
+        
         &__picture {
             display: flex;
             justify-content: center;
