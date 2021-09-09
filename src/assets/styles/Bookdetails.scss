@@ -1,247 +1,286 @@
 $backColor: gray;
- 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 //Default media query max-width: 1200px
-@media only screen and (max-width: 1200px), only screen and (max-height: 1025px){
-    .wrapper{
+@media only screen and (max-width: 1200px),
+  only screen and (max-height: 1025px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .navBar {
+    display: flex;
+    height: 4rem;
+    background-color: $backColor;
+    align-items: center;
+
+    &__list {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      list-style: none;
+      height: 100%;
+      padding: 0 8rem;
+      width: 50%;
+      position: relative;
+      right: 190px;
+
+      &__item {
         display: flex;
-        flex-direction: column;
-    }
-    .navBar {
-        display: flex;
-        height: 4rem;
-        background-color: $backColor;
+        justify-content: left;
         align-items: center;
-        
-        &__list{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            list-style: none;
-            height:100%;
-            padding: 0 8rem;
-            width: 50%;
-            position: relative;
-            right: 190px;
-    
-            &__item{
-                display: flex;
-                justify-content: left;
-                align-items: center;
-                padding: 0 0 0 10px;
-            }  
-        }
-        &__tab{
-            color:#333;
-            text-decoration: none;
-            font-size: 16pt;
-            &:hover{
-                color:black;
-            }
-            &--selector{
-                color:white;
-            }
-        }
-        &__title{
-            width: 25%;
-            padding: 0 18px;
-            font-size: 24pt;
-        }
-        &__burger{
-            display: none; 
-        }
-        &__search{
-            height: 60%;
-            width: 20%;
-            border-radius: 10px;
-            position: relative;
-            right: 20px;
-        }
-        &__btn{
-            height: 60%;
-            width: 5%;
-            position: relative;
-            right: 15px;
-            border-radius: 10px;
-            border-color: black;
-            color: black;
-            background-color: turquoise;
-        }
-    
-        
+        padding: 0 0 0 10px;
+      }
     }
-    //Main content
-    .bookPg {
+    &__tab {
+      color: #333;
+      text-decoration: none;
+      font-size: 16pt;
+      &:hover {
+        color: black;
+      }
+      &--selector {
+        color: white;
+      }
+    }
+    &__title {
+      width: 25%;
+      padding: 0 18px;
+      font-size: 24pt;
+    }
+    &__burger {
+      display: none;
+    }
+    &__search {
+      height: 60%;
+      width: 20%;
+      border-radius: 10px;
+      position: relative;
+      right: 20px;
+    }
+    &__btn {
+      height: 60%;
+      width: 5%;
+      position: relative;
+      right: 15px;
+      border-radius: 10px;
+      border-color: black;
+      color: black;
+      background-color: turquoise;
+    }
+  }
+  //Main content
+  .bookPg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    overflow-x: hidden;
+    //Wrappers for the two sections
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 20px;
+      margin: 50px 40px;
+      width: 50vw;
+      //star ratings
+      &__stars {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-        overflow-x: hidden;
-        //Wrappers for the two sections
-        &__wrapper{
-            display: flex;
-            flex-direction: column;
-            padding: 20px 20px;
-            margin: 50px 40px;
-            width: 50vw;
-            //star ratings 
-            &__stars{
-                display: flex;
-                margin-left: 35%;
-                padding: 25px 0 0 0;
-                font-size: 20pt;
-            }
-            //the second wrapper
-            &--second{
-                margin-bottom: 10%;
-            }
-        }
-        //Book Picture
-        &__picture{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 45vw;
-            height: 60vh;
-            background-image: url('./pics/CallOfCthulhu.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-
-
-        }
-        //The Details of the book
-        &__details{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: left;
-            padding: 0 0 20px 0;
-            &--title{
-                font-size: 30pt;
-            }
-            &--author{
-                font-size: 20pt;
-            }
-            &--published{
-                font-size: 17pt;
-            }
-            &--numPgs{
-                font-size: 15pt;
-            }
-        }
-    
-        &__summary{
-            display: inline-block;
-        }
-
-    
+        margin-left: 35%;
+        padding: 25px 0 0 0;
+        font-size: 20pt;
+      }
+      //the second wrapper
+      &--second {
+        margin-bottom: 10%;
+      }
     }
-    //The color of the stars
-    .checked {
-        color: orange;
+    //Book Picture
+    &__picture {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 45vw;
+      height: 60vh;
+      background-image: url("./pics/CallOfCthulhu.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    //The Details of the book
+    &__details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      padding: 0 0 20px 0;
+      &--title {
+        font-size: 30pt;
+      }
+      &--author {
+        font-size: 20pt;
+      }
+      &--published {
+        font-size: 17pt;
+      }
+      &--numPgs {
+        font-size: 15pt;
+      }
+      &--mobile {
+        display: none;
+      }
     }
 
-    .buttons-Wrapper{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        &__btns{
-            padding: 10px 20px;
-            margin: 0 10px 30px 10px;
-            width: 20%;
-            padding: 9px 10px 9px;
-            border-radius: 2rem;
-            background: turquoise;
-        }
+    &__summary {
+      display: inline-block;
     }
-    
-    main {
-        background: #5596e6;
+  }
+  //The color of the stars
+  .checked {
+    color: orange;
+  }
+
+  .buttons-Wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &__btns {
+      padding: 10px 20px;
+      margin: 0 10px 30px 10px;
+      width: 20%;
+      padding: 9px 10px 9px;
+      border-radius: 2rem;
+      background: turquoise;
+      &--edit {
+        background: darken(turquoise, 40%);
+      }
     }
-    .footer{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 10%;
-        background-color: darken(white, 20%);
-        margin-top: auto;
-    }
+  }
+
+  main {
+    background: #5596e6;
+  }
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    background-color: darken(white, 20%);
+    margin-top: auto;
+  }
 }
 
 @media only screen and (max-width: 1020px), only screen and(max-height:769px) {
-    .navBar{
-        &__list{
-            left: 10px;
-            padding: 0 2rem;
-        }
+  .navBar {
+    &__list {
+      left: 10px;
+      padding: 0 2rem;
     }
-    .title{
-        font-size: 12;
+  }
+  .title {
+    font-size: 12;
+  }
+  .bookPg {
+    &__picture {
+      height: 75vh;
     }
-    .bookPg{
-        &__picture{
-            height:75vh;
-        }
-        &__details{
-            &--title{
-                font-size: 25pt;
-            }
-            &--author{
-                font-size: 18pt;
-            }
-            &--published{
-                font-size: 14pt;
-            }
-            &--numPgs{
-                font-size: 13pt;
-            }
-        }
+    &__details {
+      &--title {
+        font-size: 25pt;
+      }
+      &--author {
+        font-size: 18pt;
+      }
+      &--published {
+        font-size: 14pt;
+      }
+      &--numPgs {
+        font-size: 13pt;
+      }
     }
+  }
 }
 
-@media only screen and (max-height: 375px), only screen 
-and (max-width: 480px) {
-    body{
-        overflow-x: hidden;
+@media only screen and (max-height: 375px), only screen and (max-width: 480px) {
+  body {
+    overflow-x: hidden;
+  }
+  .navBar {
+    width: 100vw;
+    &__list {
+      display: none;
     }
-    .navBar{
-        width: 100vw;
-        &__list{
-            display: none;;
-        }
-        &__title {
-            font-size: 17pt;
-            width: 100vw;
-            white-space: nowrap;
-        }
-        &__search{
-            display: none;
-        }
-        &__btn{
-            display: none;
-        }
-        &__burger {
-            display: flex;
-            background: url("./pics/burger.png");
-            background-size: 100% 100%;
-            height: 8vh;
-            width: 10vw;
-            justify-content: center;
-            margin: 0 10px;
-            border-radius: 5px;
-        
-        }
+    &__title {
+      font-size: 17pt;
+      width: 100vw;
+      white-space: nowrap;
     }
-    
-    .footer{
-        font-size: 10pt;
-        width:100vw;
+    &__search {
+      display: none;
     }
+    &__btn {
+      display: none;
+    }
+    &__burger {
+      display: flex;
+      background: url("./pics/burger.png");
+      background-size: 100% 100%;
+      height: 8vh;
+      width: 10vw;
+      justify-content: center;
+      margin: 0 10px;
+      border-radius: 5px;
+    }
+  }
+  .bookPg {
+    flex-direction: column;
+    &__wrapper {
+      width: 100%;
+      margin-top: 0;
+
+      &__stars {
+        align-items: center;
+      }
+    }
+    &__picture {
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background-size: contain;
+    }
+
+    &__details {
+      align-items: center;
+
+      &--mobile {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+      }
+      &--desktop {
+        display: none;
+      }
+    }
+    &__summary {
+      margin: 0 30px;
+      font-size: 14pt;
+      text-align: center;
+    }
+  }
+  .buttons-Wrapper {
+    flex-direction: column;
+    &__btns {
+      width: 50%;
+    }
+  }
+
+  .footer {
+    font-size: 10pt;
+    width: 100vw;
+  }
 }
