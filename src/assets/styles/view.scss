@@ -74,73 +74,86 @@ $backColor: gray;
     }
   }
   //Main content
-  .bookPg {
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addBook {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    overflow-x: hidden;
-    //Wrappers for the two sections
     &__wrapper {
-      display: flex;
-      flex-direction: column;
-      padding: 20px 20px;
-      margin: 50px 40px;
-      width: 50vw;
-      //star ratings
+      width: 100%;
+      margin: 30px 90px;
       &__stars {
         display: flex;
-        margin-left: 35%;
-        padding: 25px 0 0 0;
+        justify-content: center;
+        align-items: center;
         font-size: 20pt;
+        h2 {
+          padding: 0 20px 0 0;
+          font-size: 16pt;
+        }
       }
-      //the second wrapper
       &--second {
-        margin-bottom: 10%;
+        margin-right: 50px;
       }
     }
-    //Book Picture
-    &__picture {
+    &__forms {
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
+      &__wrapper {
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+      }
+      &__title {
+        flex: 1;
+        &--puPg {
+          margin: 0 20px 0 0;
+          padding: 0 10px;
+        }
+      }
+      &__input {
+        flex: 2;
+        width: 50%;
+        padding: 2%;
+        border: 2px black solid;
+        border-radius: 9px;
+        &--synopsis {
+          height: 100px;
+          text-align: left;
+        }
+      }
+    }
+  }
+  .container {
+    img {
+      width: 200px;
+      height: 300px;
+    }
+    &__button {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
       align-items: center;
-      width: 45vw;
-      height: 60vh;
-      background-image: url("./pics/CallOfCthulhu.jpg");
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-    //The Details of the book
-    &__details {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: left;
-      padding: 0 0 20px 0;
-      &--title {
-        font-size: 30pt;
+      button {
+        padding: 10px 20px;
+        margin: 30px 10px 0 40px;
+        width: 20%;
+        padding: 9px 10px 9px;
+        border-radius: 2rem;
+        background: lighten(turquoise, 20%);
       }
-      &--author {
-        font-size: 20pt;
-      }
-      &--published {
-        font-size: 17pt;
-      }
-      &--numPgs {
-        font-size: 15pt;
-      }
-      &--mobile {
-        display: none;
-      }
-    }
-
-    &__summary {
-      display: inline-block;
     }
   }
   //The color of the stars
   .checked {
-    color: orange;
+    color: white;
   }
 
   .buttons-Wrapper {
@@ -185,22 +198,30 @@ $backColor: gray;
   .title {
     font-size: 12;
   }
-  .bookPg {
-    &__picture {
-      height: 75vh;
+  .addBook {
+    &__forms {
+      &__title {
+        font-size: 16pt;
+      }
+      &__input {
+        width: 100px;
+      }
     }
-    &__details {
-      &--title {
-        font-size: 25pt;
-      }
-      &--author {
-        font-size: 18pt;
-      }
-      &--published {
-        font-size: 14pt;
-      }
-      &--numPgs {
-        font-size: 13pt;
+  }
+  .container {
+    &__text {
+      position: absolute;
+
+      font-size: 20pt;
+    }
+    &__button {
+      button {
+        padding: 10px 20px;
+        margin: 5px 10px 0 40px;
+        width: 30%;
+        padding: 9px 10px 9px;
+        border-radius: 2rem;
+        background: lighten(turquoise, 20%);
       }
     }
   }
@@ -237,41 +258,7 @@ $backColor: gray;
       border-radius: 5px;
     }
   }
-  .bookPg {
-    flex-direction: column;
-    &__wrapper {
-      width: 100%;
-      margin-top: 0;
 
-      &__stars {
-        align-items: center;
-      }
-    }
-    &__picture {
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      background-size: contain;
-    }
-
-    &__details {
-      align-items: center;
-
-      &--mobile {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-      }
-      &--desktop {
-        display: none;
-      }
-    }
-    &__summary {
-      margin: 0 30px;
-      font-size: 14pt;
-      text-align: center;
-    }
-  }
   .buttons-Wrapper {
     flex-direction: column;
     &__btns {
