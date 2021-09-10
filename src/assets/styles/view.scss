@@ -101,6 +101,9 @@ $backColor: gray;
       &--second {
         margin-right: 50px;
       }
+      &--mobile {
+        display: none;
+      }
     }
     &__forms {
       display: flex;
@@ -148,6 +151,9 @@ $backColor: gray;
         padding: 9px 10px 9px;
         border-radius: 2rem;
         background: lighten(turquoise, 20%);
+      }
+      &--mobile {
+        display: none;
       }
     }
   }
@@ -230,9 +236,10 @@ $backColor: gray;
 @media only screen and (max-height: 375px), only screen and (max-width: 480px) {
   body {
     overflow-x: hidden;
+    width: 100%;
   }
   .navBar {
-    width: 100vw;
+    width: 480px;
     &__list {
       display: none;
     }
@@ -258,6 +265,48 @@ $backColor: gray;
       border-radius: 5px;
     }
   }
+  main {
+    width: 480px;
+  }
+  .addBook {
+    flex-direction: column;
+
+    &__wrapper {
+      &--second {
+        display: none;
+      }
+      &--mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &__forms {
+      &__wrapper {
+        flex-direction: column;
+      }
+      &__title {
+        margin: 0 auto;
+      }
+      &__input {
+        width: 95%;
+      }
+    }
+  }
+  .container {
+    img {
+      margin-right: 160px;
+      width: 300px;
+    }
+    &__button {
+      &--mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+      }
+    }
+  }
 
   .buttons-Wrapper {
     flex-direction: column;
@@ -268,6 +317,6 @@ $backColor: gray;
 
   .footer {
     font-size: 10pt;
-    width: 100vw;
+    width: 480px;
   }
 }
