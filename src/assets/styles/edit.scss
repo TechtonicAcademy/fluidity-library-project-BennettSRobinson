@@ -1,5 +1,6 @@
 $backColor: gray;
-
+$delete: red;
+$mainColor: turquoise;
 * {
   box-sizing: border-box;
   margin: 0;
@@ -70,7 +71,7 @@ $backColor: gray;
       border-radius: 10px;
       border-color: black;
       color: black;
-      background-color: turquoise;
+      background-color: $mainColor;
     }
   }
   //Main content
@@ -78,6 +79,7 @@ $backColor: gray;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2%;
   }
 
   .addBook {
@@ -87,7 +89,7 @@ $backColor: gray;
     align-items: center;
     &__wrapper {
       width: 100%;
-      margin: 30px 90px;
+      margin: 30px 70px;
       &__stars {
         display: flex;
         justify-content: center;
@@ -116,10 +118,6 @@ $backColor: gray;
       }
       &__title {
         flex: 1;
-        &--puPg {
-          margin: 0 20px 0 0;
-          padding: 0 10px;
-        }
       }
       &__input {
         flex: 2;
@@ -129,9 +127,10 @@ $backColor: gray;
         border-radius: 9px;
         &--calendar {
           width: 70%;
+          margin: 0 4% 0 4%;
         }
         &--synopsis {
-          height: 100px;
+          height: 150px;
         }
       }
     }
@@ -141,7 +140,7 @@ $backColor: gray;
   }
   .container {
     img {
-      width: 200px;
+      width: 250px;
       height: 300px;
     }
     &__button {
@@ -151,11 +150,11 @@ $backColor: gray;
       align-items: center;
       button {
         padding: 10px 20px;
-        margin: 30px 0 0 0;
+        margin: 30px 0 0 30px;
         width: 40%;
         padding: 9px 10px 9px;
         border-radius: 2rem;
-        background: lighten(turquoise, 20%);
+        background: lighten($mainColor, 20%);
       }
       &--mobile {
         display: none;
@@ -164,7 +163,7 @@ $backColor: gray;
   }
   //The color of the stars
   .checked {
-    color: white;
+    color: orange;
   }
 
   .buttons-Wrapper {
@@ -178,9 +177,16 @@ $backColor: gray;
       width: 20%;
       padding: 9px 10px 9px;
       border-radius: 2rem;
-      background: turquoise;
+      background: $mainColor;
+      &:hover {
+        border-color: darken($mainColor, 45%);
+      }
       &--edit {
-        background: darken(turquoise, 30%);
+        background: darken($mainColor, 30%);
+      }
+      &--delete {
+        border-color: darken($color: $delete, $amount: 20%);
+        background: lighten($delete, 40%);
       }
     }
   }
@@ -229,10 +235,10 @@ $backColor: gray;
       button {
         padding: 10px 20px;
         margin: 5px 10px 0 40px;
-        width: 30%;
+        width: 50%;
         padding: 9px 10px 9px;
         border-radius: 2rem;
-        background: lighten(turquoise, 20%);
+        background: lighten($mainColor, 20%);
       }
     }
   }
