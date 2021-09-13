@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/edit.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>LibraryProject</title>
+</head>
+<body>
+    <div class="wrapper">
+    <header>
+        <nav class="navBar">
+            <h2 class="navBar__title">The Library</h2>
+            <ul class="navBar__list">
+                
+                <li class="navBar__list__item ">
+                    <a class="navBar__tab " href="#">Home</a>
+                </li>
+                <li class="navBar__list__item">
+                    <a class="navBar__tab" href="#">Bookshelf</a>
+                </li>
+                <li class="navBar__list__item"> 
+                    <a class="navBar__tab navBar__tab" href="#">Add Book</a>
+                </li>
+            </ul>
+            <button class="navBar__burger"></button>
+            <input type="text" class="navBar__search" placeholder="Search by Title/Author"/>
+            <button class="navBar__btn">Search</button>
+        </nav>
+    </header>
+    <main>
+        <h1 class="title">Edit Book</h1>
+        <section class="addBook">
+            <article class="addBook__wrapper">
+                <form class="addBook__forms">
+                    <div class="addBook__forms__wrapper">
+                        <label class="addBook__forms__title">Title</label>
+                        <input type="text"  class="addBook__forms__input" placeholder="Call of Cthulhu">
+                    </div>
+                    <div class="addBook__forms__wrapper">
+                        <label class="addBook__forms__title">Author</label>
+                        <input type="text"  class="addBook__forms__input" 
+                        placeholder="H.P. Lovacraft">
+                    </div>
+                    <article class="addBook__wrapper addBook__wrapper--mobile">
+                        <div class="container container">
+                            <img src="./assets/styles/pics/CallOfCthulhu.jpg"/>
+                        </div>
+                        
+                    </article>
+                    <div class="container__button container__button--mobile">
+                        <button>Add Image</button>
+                    </div>
+                    <div class="addBook__forms__wrapper">
+                        <label class="addBook__forms__title">Synopsis</label>
+                        <textarea cols="50" rows="10" class="addBook__forms__input addBook__forms__input--synopsis" 
+                        placeholder="'The Call of Cthulhu' is a short story by American horror writer H. P. Lovecraft, written in August and September 1926 and originally serialized in the February 1928 issue of Weird Tales. It is the only story written by Lovecraft in which the extraterrestrial entity Cthulhu himself makes a major appearance. The story is written in a documentary style, with three independent narratives linked together by the device of a narrator discovering notes left by a deceased relative."></textarea>
+                    </div>
+                    <div class="addBook__forms__wrapper">
+                        <label class="addBook__forms__title addBook__forms__title--puPg">Published</label>
+                        <input type="text"  class="addBook__forms__input addBook__forms__input--calendar " 
+                        placeholder=" 02/6/1928">
+                        <label class="addBook__forms__title addBook__forms__title--puPg">Pages</label>
+                        <input type="number"  class="addBook__forms__input"
+                        placeholder="78">
+                    </div>
+               
+                    
+                </form>
+                <div class="addBook__wrapper__stars">
+                    <h2>Rating</h2>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
+            </article>
+            <article class="addBook__wrapper addBook__wrapper--second">
+                <div class="container">
+                    <img src="./assets/styles/pics/empty.jpeg"/>
+                </div>
+                <div class="container__button">
+                    <button>Add Image</button>
+                </div>
+            </article>
+        </section>
+        <div class="buttons-Wrapper">
+            <button class="buttons-Wrapper__btns buttons-Wrapper__btns--edit">Add Book</button>
+            <button class="buttons-Wrapper__btns">Cancel</button>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer_copyright">Copyright 1996 wait this isn't Yu-Gi-Oh</p>
+    </footer>
+    </div>
+</body>
+</html>

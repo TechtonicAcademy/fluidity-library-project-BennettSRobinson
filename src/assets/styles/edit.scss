@@ -123,16 +123,21 @@ $backColor: gray;
       }
       &__input {
         flex: 2;
-        width: 50%;
+        width: 60%;
         padding: 2%;
         border: 2px black solid;
         border-radius: 9px;
+        &--calendar {
+          width: 70%;
+        }
         &--synopsis {
           height: 100px;
-          text-align: left;
         }
       }
     }
+  }
+  textarea {
+    text-align: left;
   }
   .container {
     img {
@@ -236,10 +241,10 @@ $backColor: gray;
 @media only screen and (max-height: 375px), only screen and (max-width: 480px) {
   body {
     overflow-x: hidden;
-    width: 100%;
+    width: 100vw;
   }
   .navBar {
-    width: 480px;
+    width: 100vw;
     &__list {
       display: none;
     }
@@ -265,9 +270,7 @@ $backColor: gray;
       border-radius: 5px;
     }
   }
-  main {
-    width: 480px;
-  }
+
   .addBook {
     flex-direction: column;
 
@@ -317,6 +320,6 @@ $backColor: gray;
 
   .footer {
     font-size: 10pt;
-    width: 480px;
+    width: 100vw;
   }
 }
