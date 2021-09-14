@@ -302,6 +302,9 @@ $mainColor: turquoise;
       }
       &__input {
         width: 95%;
+        &--calendar {
+          margin-left: 0px;
+        }
       }
     }
   }
@@ -311,11 +314,13 @@ $mainColor: turquoise;
       width: 300px;
     }
     &__button {
+      button {
+        margin-right: 10%;
+      }
       &--mobile {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 20px;
       }
     }
   }
