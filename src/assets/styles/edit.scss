@@ -1,0 +1,334 @@
+$backColor: gray;
+$delete: red;
+$mainColor: turquoise;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+//Default media query max-width: 1200px
+@media only screen and (max-width: 1200px),
+  only screen and (max-height: 1025px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .navBar {
+    display: flex;
+    height: 4rem;
+    background-color: $backColor;
+    align-items: center;
+
+    &__list {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      list-style: none;
+      height: 100%;
+      padding: 0 8rem;
+      width: 50%;
+      position: relative;
+      right: 190px;
+
+      &__item {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0 0 0 10px;
+      }
+    }
+    &__tab {
+      color: #333;
+      text-decoration: none;
+      font-size: 16pt;
+      &:hover {
+        color: black;
+      }
+      &--selector {
+        color: white;
+      }
+    }
+    &__title {
+      width: 25%;
+      padding: 0 18px;
+      font-size: 24pt;
+    }
+    &__burger {
+      display: none;
+    }
+    &__search {
+      height: 60%;
+      width: 20%;
+      border-radius: 10px;
+      position: relative;
+      right: 20px;
+    }
+    &__btn {
+      height: 60%;
+      width: 5%;
+      position: relative;
+      right: 15px;
+      border-radius: 10px;
+      border-color: black;
+      color: black;
+      background-color: $mainColor;
+    }
+  }
+  //Main content
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+  }
+
+  .addBook {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &__wrapper {
+      width: 100%;
+      margin: 30px 70px;
+      &__stars {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20pt;
+        h2 {
+          padding: 0 20px 0 0;
+          font-size: 16pt;
+        }
+      }
+      &--second {
+        margin-right: 50px;
+      }
+      &--mobile {
+        display: none;
+      }
+    }
+    &__forms {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      &__wrapper {
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+      }
+      &__title {
+        flex: 1;
+      }
+      &__input {
+        flex: 2;
+        width: 60%;
+        padding: 2%;
+        border: 2px black solid;
+        border-radius: 9px;
+        &--calendar {
+          width: 70%;
+          margin: 0 4% 0 4%;
+        }
+        &--synopsis {
+          height: 150px;
+        }
+      }
+    }
+  }
+  textarea {
+    text-align: left;
+  }
+  .container {
+    img {
+      width: 250px;
+      height: 350px;
+    }
+    &__button {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      button {
+        padding: 10px 20px;
+        margin: 30px 0 0 30px;
+        width: 40%;
+        padding: 9px 10px 9px;
+        border-radius: 2rem;
+        background: lighten($mainColor, 20%);
+      }
+      &--mobile {
+        display: none;
+      }
+    }
+  }
+  //The color of the stars
+  .checked {
+    color: orange;
+  }
+
+  .buttons-Wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &__btns {
+      padding: 10px 20px;
+      margin: 0 10px 30px 10px;
+      width: 20%;
+      padding: 9px 10px 9px;
+      border-radius: 2rem;
+      background: $mainColor;
+      &:hover {
+        border-color: darken($mainColor, 45%);
+      }
+      &--edit {
+        background: darken($mainColor, 30%);
+      }
+      &--delete {
+        border-color: darken($color: $delete, $amount: 20%);
+        background: lighten($delete, 40%);
+      }
+    }
+  }
+
+  main {
+    background: #5596e6;
+  }
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    background-color: darken(white, 20%);
+    margin-top: auto;
+  }
+}
+
+@media only screen and (max-width: 1020px), only screen and(max-height:769px) {
+  .navBar {
+    &__list {
+      left: 10px;
+      padding: 0 2rem;
+    }
+  }
+  .title {
+    font-size: 12;
+  }
+  .addBook {
+    &__forms {
+      &__title {
+        font-size: 16pt;
+      }
+      &__input {
+        width: 170px;
+      }
+    }
+  }
+  .container {
+    img {
+      height: 350px;
+    }
+    &__text {
+      position: absolute;
+
+      font-size: 20pt;
+    }
+    &__button {
+      button {
+        padding: 10px 20px;
+        margin: 5px 10px 0 40px;
+        width: 50%;
+        padding: 9px 10px 9px;
+        border-radius: 2rem;
+        background: lighten($mainColor, 20%);
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 375px), only screen and (max-width: 480px) {
+  body {
+    overflow-x: hidden;
+    width: 100vw;
+  }
+  .navBar {
+    width: 100vw;
+    &__list {
+      display: none;
+    }
+    &__title {
+      font-size: 17pt;
+      width: 100vw;
+      white-space: nowrap;
+    }
+    &__search {
+      display: none;
+    }
+    &__btn {
+      display: none;
+    }
+    &__burger {
+      display: flex;
+      background: url("./pics/burger.png");
+      background-size: 100% 100%;
+      height: 8vh;
+      width: 10vw;
+      justify-content: center;
+      margin: 0 10px;
+      border-radius: 5px;
+    }
+  }
+
+  .addBook {
+    flex-direction: column;
+
+    &__wrapper {
+      &--second {
+        display: none;
+      }
+      &--mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &__forms {
+      &__wrapper {
+        flex-direction: column;
+      }
+      &__title {
+        margin: 0 auto;
+      }
+      &__input {
+        width: 95%;
+      }
+    }
+  }
+  .container {
+    img {
+      margin-right: 160px;
+      width: 300px;
+    }
+    &__button {
+      &--mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .buttons-Wrapper {
+    flex-direction: column;
+    &__btns {
+      width: 50%;
+    }
+  }
+
+  .footer {
+    font-size: 10pt;
+    width: 100vw;
+  }
+}
