@@ -1,7 +1,10 @@
 let menu = document.querySelector(".menu");
 let burg = document.querySelector(".navBar__burger");
-
-burg.addEventListener("click", toggleMenu);
+console.log(burg);
+if (burg) {
+  console.log("clicked");
+  burg.addEventListener("click", toggleMenu);
+}
 
 function toggleMenu() {
   if (menu.classList.contains("showMenu")) menu.classList.remove("showMenu");

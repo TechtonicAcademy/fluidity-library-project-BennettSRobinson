@@ -1,5 +1,5 @@
 $backColor: gray;
-
+$mainColor: turquoise;
 * {
   box-sizing: border-box;
   margin: 0;
@@ -67,10 +67,11 @@ $backColor: gray;
       width: 5%;
       position: relative;
       right: 15px;
+      border: 1px solid black;
       border-radius: 10px;
-      border-color: red;
-      color: blue;
-      background-color: $backColor;
+      border-color: black;
+      color: black;
+      background-color: $mainColor;
     }
   }
   .menu {
@@ -116,10 +117,10 @@ $backColor: gray;
   .btn {
     width: 10%;
     height: 9%;
-    position: relative;
     right: 15px;
     border-radius: 10px;
-    border-color: black;
+    border: 1px solid black;
+    border-color: solid black;
     color: black;
     background-color: turquoise;
   }
@@ -235,7 +236,7 @@ $backColor: gray;
   .btn {
     width: 25vw;
     height: 6vh;
-    margin-left: 11%;
+
     font-size: 9pt;
     border-radius: 7px;
   }

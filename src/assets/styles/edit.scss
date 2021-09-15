@@ -76,9 +76,6 @@ $mainColor: turquoise;
   }
   .menu {
     display: none;
-    &__link {
-      display: none;
-    }
   }
   //Main content
   .title {
@@ -137,6 +134,7 @@ $mainColor: turquoise;
         }
         &--synopsis {
           height: 150px;
+          resize: none;
         }
       }
     }
