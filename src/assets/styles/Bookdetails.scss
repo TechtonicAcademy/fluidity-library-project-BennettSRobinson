@@ -73,6 +73,12 @@ $backColor: gray;
       background-color: turquoise;
     }
   }
+  .menu {
+    display: none;
+    &__link {
+      display: none;
+    }
+  }
   //Main content
   .bookPg {
     display: flex;
@@ -230,12 +236,41 @@ $backColor: gray;
       display: flex;
       background: url("./pics/burger.png");
       background-size: 100% 100%;
-      height: 8vh;
-      width: 10vw;
+      height: 40px;
+      width: 40px;
       justify-content: center;
       margin: 0 10px;
       border-radius: 5px;
     }
+  }
+  .menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25vh;
+    background: gray;
+    transform: translateY(-100%);
+    transition: transform 0.2s;
+    list-style: none;
+    padding-top: 4rem;
+
+    &__link {
+      display: inline;
+      padding: 20px;
+      font-size: 2rem;
+      color: black;
+      text-decoration: none;
+      &--selector {
+        color: white;
+      }
+    }
+  }
+  .showMenu {
+    transform: translateY(0);
   }
   .bookPg {
     flex-direction: column;
