@@ -1,9 +1,12 @@
+// test Error Boundary
+
 const BookDetails = () => {
-  return (
-    <div>
-      <h1>BookDetails</h1>
-    </div>
-  );
+  throw new Error();
+  //   return (
+  //     <div>
+  //       <h1>BookDetails</h1>
+  //     </div>
+  //   );
 };
 
 export default BookDetails;
