@@ -1,34 +1,47 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
 
   return (
     <header>
-      <nav>
-        <Link to="/">
-          <h2>The Library</h2>
-        </Link>
+      <nav className="navBar">
+        <h2 className="navBar__title">The Library</h2>
 
-        <ul>
-          <li>
-            <NavLink to="/" isActive={() => location.pathname === '/'}>
+        <ul className="navBar__list">
+          <li className="navBar__list__item ">
+            <NavLink
+              className="navBar__tab navBar__tab--selector"
+              to="/"
+              isActive={() =>
+                location.pathname === '/' || location.pathname === '/Home'
+              }
+            >
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/bookshelf">Bookshelf</NavLink>
+          <li className="navBar__list__item">
+            <NavLink className="navBar__tab" to="/bookshelf">
+              Bookshelf
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/add">Add Book</NavLink>
-          </li>
-          <li>
-            <NavLink to="/edit">Edit Book</NavLink>
-          </li>
-          <li>
-            <NavLink to="/bookdetails">Book Details</NavLink>
+          <li className="navBar__list__item">
+            <NavLink className="navBar__tab" to="/add">
+              Add Book
+            </NavLink>
           </li>
         </ul>
+        <button type="button" className="navBar__burger">
+          {}
+        </button>
+        <input
+          type="text"
+          className="navBar__search"
+          placeholder="Search by Title/Author"
+        />
+        <button type="button" className="navBar__btn">
+          Search
+        </button>
       </nav>
     </header>
   );
