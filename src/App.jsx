@@ -13,7 +13,7 @@ const App = () => {
       <div className="container">
         <Header />
         <Switch>
-          <Route exact path={['/', '/Home']}>
+          <Route exact path={['/', '/Home', 'home']}>
             <Home />
           </Route>
           <Route path="/bookshelf">

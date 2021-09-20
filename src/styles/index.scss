@@ -12,11 +12,14 @@ $mainColor: turquoise;
     display: flex;
     flex-direction: column;
   }
+
   .navBar {
     display: flex;
+    flex-direction: row;
     height: 4rem;
     background-color: $backColor;
     align-items: center;
+    width: 100%;
 
     &__list {
       display: flex;
@@ -43,7 +46,7 @@ $mainColor: turquoise;
       &:hover {
         color: black;
       }
-      &--selector {
+      &.active {
         color: white;
       }
     }
@@ -51,6 +54,9 @@ $mainColor: turquoise;
       width: 25%;
       padding: 0 18px;
       font-size: 24pt;
+      white-space: nowrap;
+      text-decoration: none;
+      color: black;
     }
     &__burger {
       display: none;
@@ -59,19 +65,18 @@ $mainColor: turquoise;
       height: 60%;
       width: 20%;
       border-radius: 10px;
-      position: relative;
+
       right: 20px;
     }
     &__btn {
-      height: 60%;
-      width: 5%;
-      position: relative;
-      right: 15px;
+      height: 4vh;
+      width: 4.5vw;
       border: 1px solid black;
       border-radius: 10px;
       border-color: black;
       color: black;
       background-color: $mainColor;
+      margin: 0 10px 0 0;
     }
   }
   .menu {
@@ -85,7 +90,7 @@ $mainColor: turquoise;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url("./pics/library.jpg");
+    background-image: url('../assets/pics/library.jpg');
     height: 400px;
 
     &__title {
@@ -104,6 +109,7 @@ $mainColor: turquoise;
     align-items: center;
     text-align: center;
     background: #5596e6;
+    width: 100%;
     &__title {
       font-weight: bold;
       position: relative;
@@ -111,18 +117,18 @@ $mainColor: turquoise;
     }
     &__description {
       position: relative;
-      padding: 18px;
+      padding: 15px;
     }
   }
   .btn {
-    width: 10%;
-    height: 9%;
-    right: 15px;
     border-radius: 10px;
     border: 1px solid black;
     border-color: solid black;
     color: black;
     background-color: turquoise;
+    text-decoration: none;
+    position: relative;
+    padding: 0.5% 1% 0 1%;
   }
 
   .footer {
@@ -133,6 +139,7 @@ $mainColor: turquoise;
     height: 10%;
     background-color: darken(white, 20%);
     margin-top: auto;
+    width: 100%;
   }
 }
 
@@ -141,6 +148,9 @@ $mainColor: turquoise;
     &__list {
       left: 10px;
       padding: 0 2rem;
+    }
+    &__btn {
+      height: 5vh;
     }
   }
 }
@@ -167,7 +177,7 @@ $mainColor: turquoise;
     }
     &__burger {
       display: flex;
-      background: url("./pics/burger.png");
+      background: url('../assets/pics/burger.png');
       background-size: 100% 100%;
       height: 40px;
       width: 40px;
@@ -224,7 +234,7 @@ $mainColor: turquoise;
 
     &__title {
       font-size: 10pt;
-      padding: 5px;
+      padding: 10px;
     }
 
     &__description {
@@ -234,9 +244,7 @@ $mainColor: turquoise;
   }
 
   .btn {
-    width: 25vw;
-    height: 6vh;
-
+    padding: 1%;
     font-size: 9pt;
     border-radius: 7px;
   }

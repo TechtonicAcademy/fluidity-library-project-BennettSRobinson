@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <div>
-      <h1>Footer</h1>
-    </div>
+    <footer className="footer">
+      <p className="footer_copyright">Copyright 1996 wait this isnt Yu-Gi-Oh</p>
+    </footer>
   );
 };
 
