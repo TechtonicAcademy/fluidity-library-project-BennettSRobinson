@@ -105,11 +105,11 @@ $mainColor: turquoise;
     }
   }
 
-  .main {
+  .mainHome {
     align-items: center;
     text-align: center;
     background: #5596e6;
-    width: 100%;
+    padding: 20px;
     &__title {
       font-weight: bold;
       position: relative;
