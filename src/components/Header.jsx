@@ -14,7 +14,9 @@ const Header = () => {
               className="navBar__tab navBar__tab--selector"
               to="/"
               isActive={() =>
-                location.pathname === '/' || location.pathname === '/Home'
+                location.pathname === '/' ||
+                location.pathname === '/Home' ||
+                location.pathname === '/home'
               }
             >
               Home
