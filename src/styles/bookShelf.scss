@@ -77,15 +77,6 @@ $backColor: gray;
   main {
     background: #5596e6;
   }
-  .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    background-color: darken(white, 20%);
-    margin-top: auto;
-  }
 }
 
 @media only screen and (max-width: 1020px), only screen and(max-height:769px) {
@@ -146,10 +137,5 @@ $backColor: gray;
       justify-content: center;
       align-items: center;
     }
-  }
-
-  .footer {
-    font-size: 10pt;
-    width: 100vw;
   }
 }

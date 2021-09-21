@@ -209,7 +209,9 @@ $mainColor: turquoise;
   .showMenu {
     transform: translateY(0);
   }
-
+  .title {
+    margin: 0 auto;
+  }
   .addBook {
     flex-direction: column;
 
