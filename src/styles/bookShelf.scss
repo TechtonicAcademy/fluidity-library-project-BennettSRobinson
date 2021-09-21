@@ -8,6 +8,9 @@ $backColor: gray;
 //Default media query max-width: 1200px
 @media only screen and (max-width: 1200px),
   only screen and (max-height: 1025px) {
+  body {
+    background-color: #5596e6;
+  }
   .menu {
     display: none;
   }
@@ -47,6 +50,7 @@ $backColor: gray;
     overflow-y: scroll;
     padding: 10px;
     max-height: 700px;
+    border: 1px solid black;
   }
   .book {
     display: flex;
@@ -76,15 +80,6 @@ $backColor: gray;
   }
   main {
     background: #5596e6;
-  }
-  .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    background-color: darken(white, 20%);
-    margin-top: auto;
   }
 }
 
@@ -146,10 +141,5 @@ $backColor: gray;
       justify-content: center;
       align-items: center;
     }
-  }
-
-  .footer {
-    font-size: 10pt;
-    width: 100vw;
   }
 }
