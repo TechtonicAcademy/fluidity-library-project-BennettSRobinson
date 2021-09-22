@@ -1,4 +1,5 @@
 import '../styles/editBook.scss';
+import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const EditBook = () => {
   return (
@@ -25,7 +26,7 @@ const EditBook = () => {
             </div>
             <article className="addBook__wrapper addBook__wrapper--mobile">
               <div className="container container">
-                <img src="../assets/pics/CallOfCthulhu.jpg" alt="empty" />
+                <img src={cthulhu} alt="empty" />
               </div>
             </article>
             <div className="container__button container__button--mobile">
@@ -66,7 +67,7 @@ const EditBook = () => {
         </article>
         <article className="addBook__wrapper addBook__wrapper--second">
           <div className="container">
-            <img src="../assets/pics/CallOfCthulhu.jpg" alt="empty" />
+            <img src={cthulhu} alt="empty" />
           </div>
           <div className="container__button">
             <button>Change Image</button>

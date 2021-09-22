@@ -5,7 +5,7 @@
       "author": "H.P. Lovecraft",
       "title": "Call of Cthulhu",
       "summary": "'The Call of Cthulhu' is a short story by American horror writer H. P. Lovecraft, written in August and September 1926 and originally serialized in the February 1928 issue of Weird Tales. It is the only story written by Lovecraft in which the extraterrestrial entity Cthulhu himself makes a major appearance. The story is written in a documentary style, with three independent narratives linked together by the device of a narrator discovering notes left by a deceased relative.",
-      "picture": null,
+      "picture": "./src/assets/pics/CallOfCthulhu.jpg",
       "published": "November 1919",
       "pages": 4
     },

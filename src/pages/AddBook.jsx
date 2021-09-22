@@ -18,7 +18,9 @@ const AddBook = () => (
             <input type="text" className="addBook__forms__input" />
           </div>
           <article className="addBook__wrapper addBook__wrapper--mobile">
-            <div className="container container">{Empty}</div>
+            <div className="container">
+              <img src={Empty} alt="empty" />
+            </div>
           </article>
           <div className="container__button container__button--mobile">
             <button>Add Image</button>
@@ -56,7 +58,7 @@ const AddBook = () => (
       </article>
       <article className="addBook__wrapper addBook__wrapper--second">
         <div className="container">
-          <img src="../assets/pics/empty.jpeg" alt="empty" />
+          <img src={Empty} alt="empty" />
         </div>
         <div className="container__button">
           <button>Add Image</button>

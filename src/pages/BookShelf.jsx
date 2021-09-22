@@ -1,6 +1,17 @@
+import { useState, useEffect } from 'react';
+import BookForm from '../components/BookForm';
+import { getBooks } from '../scripts/API';
 import '../styles/bookShelf.scss';
 
 const BookShelf = () => {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    getBooks()
+      // eslint-disable-next-line no-shadow
+      .then(({ data: books }) => setBooks(books))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <main>
       <div className="second_btn second_btn--hidden">
@@ -19,51 +30,15 @@ const BookShelf = () => {
         </h1>
       </article>
       <section className="main">
-        <article className="book ">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book ">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book ">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book ">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book ">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
-        <article className="book">
-          <div className="book__picture">{}</div>
-          <p className="book__details">Call of Cthulhu</p>
-          <p className="book__details"> H.P. Lovefcraft</p>
-        </article>
+        {books ? (
+          <>
+            {books.map((book) => (
+              <BookForm key={book.id} book={book} />
+            ))}
+          </>
+        ) : (
+          <h2>There are no books in the shelf yet</h2>
+        )}
       </section>
     </main>
   );
