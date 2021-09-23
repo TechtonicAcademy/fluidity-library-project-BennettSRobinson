@@ -20,7 +20,7 @@ const BookForm = ({ book: { id, title, author } }) => {
   );
 };
 
-BookForm.prototype = {
+BookForm.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,

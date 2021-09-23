@@ -14,7 +14,7 @@ const App = () => {
       <div className="container">
         <Header />
         <Switch>
-          <Route exact path={['/', '/Home', 'home']} component={Home} />
+          <Route exact path={['/', '/Home', '/home']} component={Home} />
           <Route path="/bookshelf" component={BookShelf} />
           <Route path="/details/:id" component={BookDetails} />
           <Route path="/add" component={AddBook} />
