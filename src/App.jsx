@@ -14,24 +14,12 @@ const App = () => {
       <div className="container">
         <Header />
         <Switch>
-          <Route exact path={['/', '/Home', 'home']}>
-            <Home />
-          </Route>
-          <Route path="/bookshelf">
-            <BookShelf />
-          </Route>
-          <Route path="/bookshelf/:id">
-            <BookDetails />
-          </Route>
-          <Route path="/add">
-            <AddBook />
-          </Route>
-          <Route path="/edit">
-            <EditBook />
-          </Route>
-          <Route>
-            <NotFound />
-          </Route>
+          <Route exact path={['/', '/Home', 'home']} component={Home} />
+          <Route path="/bookshelf" component={BookShelf} />
+          <Route path="/details/:id" component={BookDetails} />
+          <Route path="/add" component={AddBook} />
+          <Route path="/edit" component={EditBook} />
+          <Route path="*" component={NotFound} />
         </Switch>
         <Footer />
       </div>

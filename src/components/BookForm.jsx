@@ -1,12 +1,10 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import pict from '../assets/pics/CallOfCthulhu.jpg';
 
-const BookForm = (props) => {
-  // eslint-disable-next-line react/destructuring-assignment
-  const { title, author, picture } = props.book;
-
+// eslint-disable-next-line react/prop-types
+const BookForm = ({ book: { id, title, author } }) => {
   return (
-    <article className="book ">
+    <NavLink className="book " to={`/details/${id}`}>
       <div
         className="book__picture"
         styles={{
@@ -17,7 +15,7 @@ const BookForm = (props) => {
       </div>
       <p className="book__details">{title}</p>
       <p className="book__details">{author}</p>
-    </article>
+    </NavLink>
   );
 };
 

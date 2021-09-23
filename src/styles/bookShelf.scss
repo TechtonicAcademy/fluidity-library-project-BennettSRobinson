@@ -31,7 +31,10 @@ $backColor: gray;
       background: turquoise;
     }
   }
-
+  a {
+    text-decoration: none;
+    color: black;
+  }
   .title {
     display: flex;
     flex-direction: row;
