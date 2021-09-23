@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import AddBook from './pages/AddBook';
 import EditBook from './pages/EditBook';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
@@ -13,21 +14,12 @@ const App = () => {
       <div className="container">
         <Header />
         <Switch>
-          <Route exact path={['/', '/Home', 'home']}>
-            <Home />
-          </Route>
-          <Route path="/bookshelf">
-            <BookShelf />
-          </Route>
-          <Route path="/bookdetails">
-            <BookDetails />
-          </Route>
-          <Route path="/add">
-            <AddBook />
-          </Route>
-          <Route path="/edit">
-            <EditBook />
-          </Route>
+          <Route exact path={['/', '/Home', '/home']} component={Home} />
+          <Route path="/bookshelf" component={BookShelf} />
+          <Route path="/details/:id" component={BookDetails} />
+          <Route path="/add" component={AddBook} />
+          <Route path="/edit" component={EditBook} />
+          <Route path="*" component={NotFound} />
         </Switch>
         <Footer />
       </div>

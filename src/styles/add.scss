@@ -34,7 +34,6 @@ $mainColor: turquoise;
     align-items: center;
     &__wrapper {
       width: 100%;
-      margin: auto;
       &__stars {
         display: flex;
         justify-content: center;
@@ -47,7 +46,7 @@ $mainColor: turquoise;
         }
       }
       &--second {
-        margin-right: 50px;
+        padding: 0 50px;
       }
       &--mobile {
         display: none;
@@ -97,8 +96,6 @@ $mainColor: turquoise;
       justify-content: flex-start;
       align-items: center;
       button {
-        padding: 10px 20px;
-        margin: 30px 0 0 30px;
         width: 40%;
         padding: 9px 10px 9px;
         border-radius: 2rem;
@@ -249,7 +246,6 @@ $mainColor: turquoise;
   }
   .container {
     img {
-      margin-right: 160px;
       width: 300px;
     }
     &__button {
@@ -267,10 +263,5 @@ $mainColor: turquoise;
     &__btns {
       width: 50%;
     }
-  }
-
-  .footer {
-    font-size: 10pt;
-    width: 100vw;
   }
 }
