@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import pict from '../assets/pics/CallOfCthulhu.jpg';
 
 // eslint-disable-next-line react/prop-types
@@ -19,4 +20,9 @@ const BookForm = ({ book: { id, title, author } }) => {
   );
 };
 
+BookForm.prototype = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+};
 export default BookForm;
