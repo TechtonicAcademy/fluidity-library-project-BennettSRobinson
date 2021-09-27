@@ -1,6 +1,7 @@
-import { useRef } from 'react';
-import { useHistory } from 'react-router';
+import * as react from 'react';
+import { useHistory } from 'react-router-dom';
 import { addBook } from '../scripts/API';
+import isValidDate from '../scripts/dateValidate';
 import '../styles/add.scss';
 import Empty from '../assets/pics/empty.jpeg';
 
@@ -9,18 +10,12 @@ const AddBook = () => {
   const history = useHistory();
 
   // Refs for inputs
-  const titleRef = useRef();
-  const authorRef = useRef();
-  const summaryRef = useRef();
-  const publishedRef = useRef();
-  const pagesRef = useRef();
+  const titleRef = react.useRef();
+  const authorRef = react.useRef();
+  const summaryRef = react.useRef();
+  const publishedRef = react.useRef();
+  const pagesRef = react.useRef();
 
-  // checks if the date is valid
-  const isValidDate = (date) => {
-    const matches = /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/.exec(date);
-    if (matches == null) return false;
-    return true;
-  };
   // eslint-disable-next-line consistent-return
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +37,7 @@ const AddBook = () => {
     }
     // add book to the database and then it moves you to bookshelf
     addBook({ title, author, summary, published, pages })
+      // eslint-disable-next-line no-unused-vars
       .then((_) => history.push('/bookshelf'))
       .catch((err) => console.log(err));
   };
@@ -51,55 +47,66 @@ const AddBook = () => {
       <section className="addBook">
         <article className="addBook__wrapper">
           <form className="addBook__forms" onSubmit={handleFormSubmit}>
-            <div className="addBook__forms__wrapper">
-              <label htmlFor="title" className="addBook__forms__title">
-                Title
-              </label>
+            <label htmlFor="title" className="addBook__forms__wrapper">
+              <span className="addBook__forms__title">Title</span>
               <input
+                id="title"
                 type="text"
                 className="addBook__forms__input"
                 ref={titleRef}
               />
-            </div>
-            <div className="addBook__forms__wrapper">
-              <label className="addBook__forms__title">Author</label>
+            </label>
+
+            <label htmlFor="author" className="addBook__forms__wrapper">
+              <span className="addBook__forms__title">Author</span>
               <input
+                id="author"
                 type="text"
                 className="addBook__forms__input"
                 ref={authorRef}
               />
-            </div>
+            </label>
             <article className="addBook__wrapper addBook__wrapper--mobile">
               <div className="container">
                 <img src={Empty} alt="empty" />
               </div>
             </article>
             <div className="container__button container__button--mobile">
-              <button>Add Image</button>
+              <button type="button">Add Image</button>
             </div>
-            <div className="addBook__forms__wrapper">
-              <label className="addBook__forms__title">Synopsis</label>
+
+            <label htmlFor="summary" className="addBook__forms__wrapper">
+              <span className="addBook__forms__title">Synopsis</span>
               <textarea
+                id="summary"
                 cols="50"
                 rows="10"
                 className="addBook__forms__input addBook__forms__input--synopsis"
                 ref={summaryRef}
               />
-            </div>
+            </label>
+
             <div className="addBook__forms__wrapper addBook__forms__wrapper--published">
-              <label className="addBook__forms__title ">Published</label>
-              <input
-                type="text"
-                className="addBook__forms__input addBook__forms__input--calendar"
-                placeholder="MM/DD/YYYY"
-                ref={publishedRef}
-              />
-              <label className="addBook__forms__title ">Pages</label>
-              <input
-                type="number"
-                className="addBook__forms__input addBook__forms__input--calendar"
-                ref={pagesRef}
-              />
+              <label htmlFor="published" className="addBook__forms__wrapper">
+                <span className="addBook__forms__title ">Published</span>
+                <input
+                  id="published"
+                  type="text"
+                  className="addBook__forms__input addBook__forms__input--calendar"
+                  placeholder="MM/DD/YYYY"
+                  ref={publishedRef}
+                />
+              </label>
+
+              <label htmlFor="pages" className="addBook__forms__wrapper ">
+                <span className="addBook__forms__title ">Pages</span>
+                <input
+                  id="pages"
+                  type="number"
+                  className="addBook__forms__input addBook__forms__input--calendar"
+                  ref={pagesRef}
+                />
+              </label>
             </div>
           </form>
           <div className="addBook__wrapper__stars">
@@ -116,7 +123,7 @@ const AddBook = () => {
             <img src={Empty} alt="empty" />
           </div>
           <div className="container__button">
-            <button>Add Image</button>
+            <button type="button">Add Image</button>
           </div>
         </article>
       </section>
