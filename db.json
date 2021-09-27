@@ -10,13 +10,12 @@
       "pages": 4
     },
     {
-      "id": 2,
-      "author": "H.P. Lovecraft",
       "title": "Dagon",
+      "author": "Keith Davidson",
       "summary": "'Dagon is a deity who presides over the Deep Ones, an amphibious humanoid race that currently resides in the Earth's oceans. He is first introduced in Lovecraft's short story 'Dagon;', and is mentioned extensively throughout the mythos. Also known as Father Dagon and the consort of Mother Hydra, although they are Deities, they are generally not considered Great Old Ones.",
-      "picture": null,
-      "published": "November 1919",
-      "pages": 4
+      "published": "07/2/1919",
+      "pages": 4,
+      "id": 2
     },
     {
       "id": 3,

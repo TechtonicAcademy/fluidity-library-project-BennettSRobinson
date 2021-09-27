@@ -1,4 +1,4 @@
-import * as react from 'react';
+import { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { addBook } from '../scripts/API';
 import isValidDate from '../scripts/dateValidate';
@@ -10,11 +10,11 @@ const AddBook = () => {
   const history = useHistory();
 
   // Refs for inputs
-  const titleRef = react.useRef();
-  const authorRef = react.useRef();
-  const summaryRef = react.useRef();
-  const publishedRef = react.useRef();
-  const pagesRef = react.useRef();
+  const titleRef = useRef();
+  const authorRef = useRef();
+  const summaryRef = useRef();
+  const publishedRef = useRef();
+  const pagesRef = useRef();
 
   // eslint-disable-next-line consistent-return
   const handleFormSubmit = (e) => {

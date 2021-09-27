@@ -19,3 +19,11 @@ export const addBook = (book) => {
 export const deleteBook = (id) => {
   return axios.delete(`http://localhost:3000/books/${id}`);
 };
+
+export const updateBook = (id, book) => {
+  return axios.put(`http://localhost:3000/books/${id}`, book, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
