@@ -9,12 +9,15 @@ const EditBook = () => {
         <article className="addBook__wrapper">
           <form className="addBook__forms">
             <div className="addBook__forms__wrapper">
-              <label className="addBook__forms__title">Title</label>
-              <input
-                type="text"
-                className="addBook__forms__input"
-                placeholder="Call of Cthulhu"
-              />
+              <label htmlFor="title" className="addBook__forms__title">
+                Title
+                <input
+                  id="title"
+                  type="text"
+                  className="addBook__forms__input"
+                  placeholder="Call of Cthulhu"
+                />
+              </label>
             </div>
             <div className="addBook__forms__wrapper">
               <label className="addBook__forms__title">Author</label>
