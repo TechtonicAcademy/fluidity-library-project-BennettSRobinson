@@ -1,15 +1,49 @@
 // test Error Boundary
+import { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { getBook, deleteBook } from '../scripts/API';
 import '../styles/Bookdetails.scss';
+import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const BookDetails = () => {
+  const [book, setBook] = useState({});
+  const { id } = useParams();
+  const history = useHistory();
+
+  // gets the current book
+  useEffect(() => {
+    getBook(id)
+      .then(({ data: books }) => setBook(books))
+      .catch((err) => console.log(err));
+  }, [id]);
+
+  // handles the delete button
+  // eslint-disable-next-line no-shadow
+  const handleDelete = (id) => {
+    deleteBook(id)
+      // eslint-disable-next-line no-unused-vars
+      .then((_) => history.push('/bookshelf'))
+      .catch((err) => console.log(err));
+  };
+
+  // deconstructs the book object
+  const { title, author, summary, published, pages } = book;
+
   return (
     <main>
       <article className="bookPg">
         <section className="bookPg__wrapper">
           <h1 className="bookPg__details bookPg__details--title bookPg__details--mobile">
-            Call of Cthulhu
+            {title}
           </h1>
-          <div className="bookPg__picture">{}</div>
+          <div
+            className="bookPg__picture"
+            styles={{
+              background: `url(${cthulhu})`,
+            }}
+          >
+            {}
+          </div>
           <div className="bookPg__wrapper__stars">
             <span className="fa fa-star checked" />
             <span className="fa fa-star checked" />
@@ -20,33 +54,41 @@ const BookDetails = () => {
         </section>
         <section className="bookPg__wrapper bookPg__wrapper--second">
           <h1 className="bookPg__details bookPg__details--title bookPg__details--desktop">
-            Call of Cthulhu
+            {title}
           </h1>
-          <p className="bookPg__details bookPg__details--author">
-            H.P. Lovacraft
-          </p>
+          <p className="bookPg__details bookPg__details--author">{author}</p>
           <p className="bookPg__details bookPg__details--published">
-            <i>Published: February 1928</i>
+            <i>Published: {published}</i>
           </p>
-          <p className="bookPg__details bookPg__details--numPgs">78 pages</p>
+          <p className="bookPg__details bookPg__details--numPgs">{pages}</p>
           {/* {Summary taken from lovecraft.fandom.com for Call of Cthulhu} */}
-          <p className="bookPg__summary">
-            "The Call of Cthulhu" is a short story by American horror writer H.
-            P. Lovecraft, written in August and September 1926 and originally
-            serialized in the February 1928 issue of Weird Tales. It is the only
-            story written by Lovecraft in which the extraterrestrial entity
-            Cthulhu himself makes a major appearance. The story is written in a
-            documentary style, with three independent narratives linked together
-            by the device of a narrator discovering notes left by a deceased
-            relative.
-          </p>
+          <p className="bookPg__summary">{summary}</p>
         </section>
       </article>
       <div className="buttons-Wrapper">
-        <button className="buttons-Wrapper__btns buttons-Wrapper__btns--edit">
+        <button
+          type="button"
+          className="buttons-Wrapper__btns buttons-Wrapper__btns--edit"
+          onClick={() => history.push('/edit')}
+        >
           Edit This Book
         </button>
-        <button className="buttons-Wrapper__btns">Back to Shelf</button>
+        <button
+          type="button"
+          className="buttons-Wrapper__btns buttons-Wrapper__btns--delete"
+          onClick={() => handleDelete(id)}
+        >
+          Delete this Book
+        </button>
+        {/* Added a third button so you can cancel the details page and go
+        back to the bookshelf without deleting or editing a book */}
+        <button
+          type="button"
+          className="buttons-Wrapper__btns "
+          onClick={() => history.push('/bookshelf')}
+        >
+          Cancel
+        </button>
       </div>
     </main>
   );
