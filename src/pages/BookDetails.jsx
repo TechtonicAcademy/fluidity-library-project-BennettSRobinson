@@ -69,7 +69,7 @@ const BookDetails = () => {
         <button
           type="button"
           className="buttons-Wrapper__btns buttons-Wrapper__btns--edit"
-          onClick={() => history.push('/edit')}
+          onClick={() => history.push(`/edit/${id}`)}
         >
           Edit This Book
         </button>
