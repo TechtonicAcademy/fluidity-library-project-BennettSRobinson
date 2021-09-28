@@ -5,6 +5,3 @@ $delete: red;
   border-color: darken($color: $delete, $amount: 20%);
   background: lighten($delete, 40%);
 }
-.checked {
-  color: orange;
-}

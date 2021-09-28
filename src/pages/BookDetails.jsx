@@ -1,6 +1,7 @@
 // test Error Boundary
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import StarRatings from 'react-star-ratings';
 import { getBook, deleteBook } from '../scripts/API';
 import '../styles/Bookdetails.scss';
 import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
@@ -27,7 +28,7 @@ const BookDetails = () => {
   };
 
   // deconstructs the book object
-  const { title, author, summary, published, pages } = book;
+  const { title, author, summary, published, pages, rating } = book;
 
   return (
     <main>
@@ -45,11 +46,13 @@ const BookDetails = () => {
             {}
           </div>
           <div className="bookPg__wrapper__stars">
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
+            <StarRatings
+              rating={rating}
+              starRatedColor="orange"
+              numberOfStars={5}
+              starDimension="25px"
+              starSpacing="5px"
+            />
           </div>
         </section>
         <section className="bookPg__wrapper bookPg__wrapper--second">
@@ -60,7 +63,9 @@ const BookDetails = () => {
           <p className="bookPg__details bookPg__details--published">
             <i>Published: {published}</i>
           </p>
-          <p className="bookPg__details bookPg__details--numPgs">{pages}</p>
+          <p className="bookPg__details bookPg__details--numPgs">
+            Pages: {pages}
+          </p>
           {/* {Summary taken from lovecraft.fandom.com for Call of Cthulhu} */}
           <p className="bookPg__summary">{summary}</p>
         </section>

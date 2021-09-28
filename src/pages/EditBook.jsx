@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import StarRatings from 'react-star-ratings';
 import { getBook, updateBook } from '../scripts/API';
 import isValidDate from '../scripts/dateValidate';
 import '../styles/editBook.scss';
@@ -23,35 +24,52 @@ const EditBook = () => {
   const publishedRef = useRef();
   const pagesRef = useRef();
 
-  const { title, author, summary, published, pages } = book;
+  const { title, author, summary, published, pages, rating } = book;
 
+  // eslint-disable-next-line consistent-return
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // new valeus for the book details if not its value is the old value
     const newTitle = titleRef.current.value.trim() || title;
     const newAuthor = authorRef.current.value.trim() || author;
     const newSummary = summaryRef.current.value.trim() || summary;
     const newPublished = publishedRef.current.value || published;
     const newPages = pagesRef.current.value || pages;
+    const newRating = rating;
 
     if (!newTitle || !newAuthor) {
-      throw new Error('You have not inputed a Title and/or Author');
+      // eslint-disable-next-line no-alert
+      return alert(`Invalid submission: \n
+      Title: ${newTitle ? '✅' : '❌'}\n
+      Author: ${newAuthor ? '✅' : '❌'}\n
+      Please enter the required inputs.`);
     }
     if (newPublished) {
       if (!isValidDate(newPublished)) {
-        throw new Error('Incorrect date must be MM/DD/YYYY');
+        // eslint-disable-next-line no-alert
+        return alert(`Invalid Date: \n
+        Published: ${newPublished} \n
+        The published date must be MM/DD/YYYY format including the /`);
       }
     }
+
+    // updates the book
     updateBook(id, {
       title: newTitle,
       author: newAuthor,
       summary: newSummary,
       published: newPublished,
       pages: newPages,
+      rating: newRating,
     })
       // eslint-disable-next-line no-unused-vars
       .then((_) => history.push('/bookshelf'))
       .catch((err) => console.log(err));
+  };
+
+  const handleRating = (star) => {
+    setBook((prev) => ({ ...prev, rating: star }));
   };
 
   return (
@@ -126,11 +144,14 @@ const EditBook = () => {
           </form>
           <div className="addBook__wrapper__stars">
             <h2>Rating</h2>
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
+            <StarRatings
+              rating={rating}
+              starRatedColor="orange"
+              numberOfStars={5}
+              starDimension="25px"
+              starSpacing="5px"
+              changeRating={handleRating}
+            />
           </div>
         </article>
         <article className="addBook__wrapper addBook__wrapper--second">

@@ -1,5 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import StarRatings from 'react-star-ratings';
 import { addBook } from '../scripts/API';
 import isValidDate from '../scripts/dateValidate';
 import '../styles/add.scss';
@@ -8,7 +9,7 @@ import Empty from '../assets/pics/empty.jpeg';
 const AddBook = () => {
   // History to push to stack
   const history = useHistory();
-
+  const [books, setBooks] = useState({ rating: 0 });
   // Refs for inputs
   const titleRef = useRef();
   const authorRef = useRef();
@@ -26,21 +27,35 @@ const AddBook = () => {
     const summary = summaryRef.current.value.trim();
     const published = publishedRef.current.value;
     const pages = pagesRef.current.value;
+    const { rating } = books;
+
     // If there is not a input for author and/or title throw error
     if (!title || !author) {
-      throw new Error('You have not inputed a Title and/or Author');
+      // eslint-disable-next-line no-alert
+      return alert(`Invalid submission: \n
+      Title: ${title ? '✅' : '❌'}\n
+      Author: ${author ? '✅' : '❌'}\n
+      Please enter the required inputs.`);
     }
     if (published) {
       if (!isValidDate(published)) {
-        throw new Error('Incorrect date ');
+        // eslint-disable-next-line no-alert
+        return alert(`Invalid Date: \n
+      Published: ${published} \n
+      The published date must be MM/DD/YYYY format including the /`);
       }
     }
     // add book to the database and then it moves you to bookshelf
-    addBook({ title, author, summary, published, pages })
+    addBook({ title, author, summary, published, pages, rating })
       // eslint-disable-next-line no-unused-vars
       .then((_) => history.push('/bookshelf'))
       .catch((err) => console.log(err));
   };
+
+  const handleRating = (star) => {
+    setBooks((prev) => ({ ...prev, rating: star }));
+  };
+
   return (
     <main className="mainAdd">
       <h1 className="title">Add Book</h1>
@@ -111,11 +126,14 @@ const AddBook = () => {
           </form>
           <div className="addBook__wrapper__stars">
             <h2>Rating</h2>
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
+            <StarRatings
+              rating={books.rating}
+              starRatedColor="orange"
+              numberOfStars={5}
+              starDimension="25px"
+              starSpacing="5px"
+              changeRating={handleRating}
+            />
           </div>
         </article>
         <article className="addBook__wrapper addBook__wrapper--second">
