@@ -7,16 +7,17 @@
       "summary": "'The Call of Cthulhu' is a short story by American horror writer H. P. Lovecraft, written in August and September 1926 and originally serialized in the February 1928 issue of Weird Tales. It is the only story written by Lovecraft in which the extraterrestrial entity Cthulhu himself makes a major appearance. The story is written in a documentary style, with three independent narratives linked together by the device of a narrator discovering notes left by a deceased relative.",
       "picture": "./src/assets/pics/CallOfCthulhu.jpg",
       "published": "November 1919",
-      "pages": 4
+      "pages": 4,
+      "rating": 4
     },
     {
-      "id": 2,
-      "author": "H.P. Lovecraft",
       "title": "Dagon",
+      "author": "Keith Davidson",
       "summary": "'Dagon is a deity who presides over the Deep Ones, an amphibious humanoid race that currently resides in the Earth's oceans. He is first introduced in Lovecraft's short story 'Dagon;', and is mentioned extensively throughout the mythos. Also known as Father Dagon and the consort of Mother Hydra, although they are Deities, they are generally not considered Great Old Ones.",
-      "picture": null,
-      "published": "November 1919",
-      "pages": 4
+      "published": "07/2/1919",
+      "pages": 4,
+      "id": 2,
+      "rating": 5
     },
     {
       "id": 3,
@@ -25,7 +26,8 @@
       "summary": "The narrator is a student on an antiquarian tour of New England. He sees a piece of exotic jewelry in a museum, and learns that its source is the nearby decrepit seaport of Innsmouth. He travels to Innsmouth and observes disturbing events and people. A local resident tells him a horrifying story of aquatic monsters who can interbreed with humans to produce amphibian hybrids. The student is tricked into staying overnight in the town, and he is attacked in his hotel. He flees, but finds that his pursuers are the hybrid monsters of his informant’s story. He alerts the authorities, who take drastic action. He then discovers that he has alien ancestors and must eventually return to the sea.",
       "picture": null,
       "published": "December 1931",
-      "pages": 40
+      "pages": 40,
+      "rating": 3
     },
     {
       "id": 4,
@@ -34,7 +36,8 @@
       "summary": " In the tale, an unnamed narrator pieces together the story of an area known by the locals as the 'blasted heath' in the wild hills west of Arkham, Massachusetts. The narrator discovers that many years ago a meteorite crashed there, draining the life force from anything living nearby; vegetation grows large, but tasteless, animals are driven mad and deformed into grotesque shapes, and the people go insane or die one by one.",
       "picture": null,
       "published": "March 1927",
-      "pages": 30
+      "pages": 30,
+      "rating": 5
     },
     {
       "id": 5,
@@ -43,7 +46,8 @@
       "summary": "In the tale, an unnamed narrator relates the story of how a law forbidding the killing of cats came to be in a town called Ulthar. As the narrative goes, the city is home to an old couple who enjoy capturing and killing the townspeople's cats. When a caravan of wanderers passes through the city, the kitten of an orphan (Menes) traveling with the band disappears. Upon hearing of the couple's violent acts towards cats, Menes invokes a prayer before leaving town that causes the local felines to swarm the cat-killers' house and devour them. Upon witnessing the result, the local politicians pass a law forbidding the killing of cats.",
       "picture": null,
       "published": "June 1920",
-      "pages": 28
+      "pages": 28,
+      "rating": 2
     },
     {
       "title": "H.P lovecraft",
@@ -51,7 +55,17 @@
       "summary": "summary",
       "published": "",
       "pages": "",
-      "id": 6
+      "id": 6,
+      "rating": 1
+    },
+    {
+      "title": "title",
+      "author": "author",
+      "summary": "",
+      "published": "",
+      "pages": "",
+      "rating": 3,
+      "id": 7
     }
   ]
 }
