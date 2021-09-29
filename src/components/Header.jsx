@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const location = useLocation();
@@ -36,14 +37,7 @@ const Header = () => {
         <button type="button" className="navBar__burger">
           {}
         </button>
-        <input
-          type="text"
-          className="navBar__search"
-          placeholder="Search by Title/Author"
-        />
-        <button type="button" className="navBar__btn">
-          Search
-        </button>
+        <SearchBar nav="header" />
       </nav>
     </header>
   );
