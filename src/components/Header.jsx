@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import BurgerMenu from './BurgerMenu';
 import SearchBar from './SearchBar';
 
 const Header = () => {
@@ -34,9 +35,7 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <button type="button" className="navBar__burger">
-          {}
-        </button>
+        <BurgerMenu />
         <SearchBar nav="header" />
       </nav>
     </header>

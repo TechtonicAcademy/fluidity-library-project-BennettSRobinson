@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const SearchBar = (props) => {
+const SearchBar = ({ nav }) => {
   const history = useHistory();
   const [search, setsearch] = useState('');
 
@@ -18,17 +19,13 @@ const SearchBar = (props) => {
     <>
       <input
         type="text"
-        className={
-          props.nav === 'header' ? 'navBar__search' : 'second_btn__search'
-        }
+        className={nav === 'header' ? 'navBar__search' : 'second_btn__search'}
         placeholder="Search by Title/Author"
         onChange={(e) => setsearch(e.target.value)}
       />
       <button
         type="button"
-        className={
-          props.nav === 'header' ? 'navBar__btn' : 'second_btn__submit'
-        }
+        className={nav === 'header' ? 'navBar__btn' : 'second_btn__submit'}
         onClick={handleSearch}
       >
         Search
@@ -37,4 +34,11 @@ const SearchBar = (props) => {
   );
 };
 
+SearchBar.propTypes = {
+  nav: PropTypes.string,
+};
+
+SearchBar.defaultProps = {
+  nav: '',
+};
 export default SearchBar;
