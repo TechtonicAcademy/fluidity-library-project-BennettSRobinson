@@ -9,7 +9,7 @@ import Empty from '../assets/pics/empty.jpeg';
 const AddBook = () => {
   // History to push to stack
   const history = useHistory();
-  const [books, setBooks] = useState({ rating: 0 });
+  const [book, setBook] = useState({ rating: 0 });
   // Refs for inputs
   const titleRef = useRef();
   const authorRef = useRef();
@@ -27,7 +27,7 @@ const AddBook = () => {
     const summary = summaryRef.current.value.trim();
     const published = publishedRef.current.value;
     const pages = pagesRef.current.value;
-    const { rating } = books;
+    const { rating } = book;
 
     // If there is not a input for author and/or title throw error
     if (!title || !author) {
@@ -53,7 +53,7 @@ const AddBook = () => {
   };
 
   const handleRating = (star) => {
-    setBooks((prev) => ({ ...prev, rating: star }));
+    setBook((prev) => ({ ...prev, rating: star }));
   };
 
   return (
@@ -127,7 +127,7 @@ const AddBook = () => {
           <div className="addBook__wrapper__stars">
             <h2>Rating</h2>
             <StarRatings
-              rating={books.rating}
+              rating={book.rating}
               starRatedColor="orange"
               numberOfStars={5}
               starDimension="25px"

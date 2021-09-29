@@ -14,7 +14,8 @@ const EditBook = () => {
   // gets the current book
   useEffect(() => {
     getBook(id)
-      .then(({ data: books }) => setBook(books))
+      // eslint-disable-next-line no-shadow
+      .then(({ data: book }) => setBook(book))
       .catch((err) => console.log(err));
   }, [id]);
 
