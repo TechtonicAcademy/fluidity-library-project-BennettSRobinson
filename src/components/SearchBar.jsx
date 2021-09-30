@@ -20,6 +20,7 @@ const SearchBar = ({ nav }) => {
       <input
         type="text"
         className={nav === 'header' ? 'navBar__search' : 'second_btn__search'}
+        value={search}
         placeholder="Search by Title/Author"
         onChange={(e) => setsearch(e.target.value)}
       />
