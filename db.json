@@ -57,6 +57,15 @@
       "pages": "",
       "id": 6,
       "rating": 1
+    },
+    {
+      "title": "Call of Cthulhu",
+      "author": "Keith Davidson",
+      "summary": "this is a summary",
+      "published": "12/32/1234",
+      "pages": "32",
+      "rating": 5,
+      "id": 7
     }
   ]
 }

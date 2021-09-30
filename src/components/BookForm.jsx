@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import pict from '../assets/pics/CallOfCthulhu.jpg';
 
 // eslint-disable-next-line react/prop-types
-const BookForm = ({ book: { id, title, author } }) => {
+const BookForm = ({ id, title, author }) => {
   return (
     <NavLink className="book " to={`/details/${id}`}>
       <div

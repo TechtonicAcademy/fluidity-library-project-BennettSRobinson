@@ -33,6 +33,7 @@ const BookShelf = () => {
       );
     else setfilteredBooks(books);
   }, [search, books]);
+
   return (
     <main>
       <article>
@@ -46,8 +47,8 @@ const BookShelf = () => {
       <section className="main">
         {filteredBooks ? (
           <>
-            {filteredBooks.map((book) => (
-              <BookForm key={book.id} book={book} />
+            {filteredBooks.map(({ id, title, author }) => (
+              <BookForm key={id} title={title} author={author} id={id} />
             ))}
           </>
         ) : (
