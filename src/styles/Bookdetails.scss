@@ -1,19 +1,8 @@
 $backColor: gray;
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 //Default media query max-width: 1200px
 @media only screen and (max-width: 1200px),
   only screen and (max-height: 1025px) {
-  .menu {
-    display: none;
-    &__link {
-      display: none;
-    }
-  }
   //Main content
   .bookPg {
     display: flex;
@@ -129,35 +118,6 @@ $backColor: gray;
     overflow-x: hidden;
   }
 
-  .menu {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 25vh;
-    background: gray;
-    transform: translateY(-100%);
-    transition: transform 0.2s;
-    list-style: none;
-    padding-top: 4rem;
-
-    &__link {
-      display: inline;
-      padding: 20px;
-      font-size: 2rem;
-      color: black;
-      text-decoration: none;
-      &--selector {
-        color: white;
-      }
-    }
-  }
-  .showMenu {
-    transform: translateY(0);
-  }
   .bookPg {
     flex-direction: column;
     &__wrapper {

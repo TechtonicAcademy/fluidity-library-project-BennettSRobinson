@@ -59,13 +59,69 @@
       "rating": 1
     },
     {
+      "title": "Call of Cthulhu",
+      "author": "Keith Davidson",
+      "summary": "this is a summary",
+      "published": "12/32/1234",
+      "pages": "32",
+      "rating": 5,
+      "id": 7
+    },
+    {
       "title": "title",
       "author": "author",
-      "summary": "",
-      "published": "",
-      "pages": "",
-      "rating": 3,
-      "id": 7
+      "published": "11/22/3321",
+      "id": 8
+    },
+    {
+      "title": "title",
+      "author": "author",
+      "summary": "this is an edit",
+      "id": 9
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "id": 10
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "published": "12/30/2019",
+      "id": 11
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "id": 12
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "published": "12/30/2019",
+      "id": 13
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "id": 14
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "published": "12/30/2019",
+      "id": 15
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "id": 16
+    },
+    {
+      "title": "test",
+      "author": "testman",
+      "published": "12/30/2019",
+      "id": 17
     }
   ]
 }

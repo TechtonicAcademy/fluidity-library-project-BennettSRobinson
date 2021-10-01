@@ -1,7 +1,9 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import BurgerMenu from './BurgerMenu';
+import SearchBar from './SearchBar';
 
 const Header = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <header>
@@ -14,9 +16,7 @@ const Header = () => {
               className="navBar__tab navBar__tab--selector"
               to="/"
               isActive={() =>
-                location.pathname === '/' ||
-                location.pathname === '/Home' ||
-                location.pathname === '/home'
+                pathname === '/' || pathname.toLowerCase() === '/home'
               }
             >
               Home
@@ -33,17 +33,8 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <button type="button" className="navBar__burger">
-          {}
-        </button>
-        <input
-          type="text"
-          className="navBar__search"
-          placeholder="Search by Title/Author"
-        />
-        <button type="button" className="navBar__btn">
-          Search
-        </button>
+        <BurgerMenu />
+        <SearchBar nav="header" />
       </nav>
     </header>
   );

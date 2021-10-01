@@ -1,39 +1,54 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import BookForm from '../components/BookForm';
+import SearchBar from '../components/SearchBar';
 import { getBooks } from '../scripts/API';
 import '../styles/bookShelf.scss';
 
 const BookShelf = () => {
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setfilteredBooks] = useState([]);
+  const location = useLocation();
+  const search = location.state;
 
   useEffect(() => {
     getBooks()
       // eslint-disable-next-line no-shadow
-      .then(({ data: books }) => setBooks(books))
+      .then(({ data: books }) => {
+        setBooks(books);
+        setfilteredBooks(books);
+      })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    if (search)
+      setfilteredBooks(
+        books.filter((book) => {
+          return (
+            book.author.toLowerCase().includes(search.toLowerCase()) ||
+            book.title.toLowerCase().includes(search.toLowerCase())
+          );
+        })
+      );
+    else setfilteredBooks(books);
+  }, [search, books]);
+
   return (
     <main>
-      <div className="second_btn second_btn--hidden">
-        <input
-          type="text"
-          className="second_btn__search"
-          placeholder="Search by Title/Author"
-        />
-        <button type="submit" className="second_btn__submit">
-          Search
-        </button>
-      </div>
       <article>
         <h1 className="title">
           Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
         </h1>
       </article>
+      <div className="second_btn second_btn--hidden">
+        <SearchBar />
+      </div>
       <section className="main">
-        {books ? (
+        {filteredBooks.length ? (
           <>
-            {books.map((book) => (
-              <BookForm key={book.id} book={book} />
+            {filteredBooks.map(({ id, title, author }) => (
+              <BookForm key={id} title={title} author={author} id={id} />
             ))}
           </>
         ) : (

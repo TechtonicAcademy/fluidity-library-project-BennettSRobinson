@@ -136,10 +136,10 @@ $mainColor: turquoise;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 10%;
+    height: 4%;
     background-color: darken(white, 20%);
-    margin-top: auto;
     width: 100%;
+    bottom: 0;
   }
 }
 
@@ -188,18 +188,20 @@ $mainColor: turquoise;
   }
   .menu {
     display: flex;
-    position: fixed;
+    justify-content: space-between;
+    align-items: flex-start;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 25vh;
+    height: 35%;
     background: gray;
-    transform: translateY(-100%);
+    transform: translatex(-100%);
     transition: transform 0.2s;
     list-style: none;
     padding-top: 4rem;
+    border: 2px solid black;
 
     &__link {
       display: inline;
@@ -207,13 +209,18 @@ $mainColor: turquoise;
       font-size: 2rem;
       color: black;
       text-decoration: none;
-      &--selector {
+      border: 1px solid black;
+      box-shadow: 1px 2px 2px red;
+      &.active {
         color: white;
       }
     }
   }
   .showMenu {
-    transform: translateY(0);
+    position: absolute;
+    transform: translateY(45%);
+    margin-top: 0;
+    z-index: 3;
   }
 
   .homepage {
@@ -228,7 +235,7 @@ $mainColor: turquoise;
     }
   }
 
-  .main {
+  .mainHome {
     height: 40vh;
     width: 100vw;
 
@@ -252,5 +259,6 @@ $mainColor: turquoise;
   .footer {
     font-size: 10pt;
     width: 100vw;
+    position: fixed;
   }
 }
