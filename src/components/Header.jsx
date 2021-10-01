@@ -3,7 +3,7 @@ import BurgerMenu from './BurgerMenu';
 import SearchBar from './SearchBar';
 
 const Header = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <header>
@@ -16,9 +16,7 @@ const Header = () => {
               className="navBar__tab navBar__tab--selector"
               to="/"
               isActive={() =>
-                location.pathname === '/' ||
-                location.pathname === '/Home' ||
-                location.pathname === '/home'
+                pathname === '/' || pathname.toLowerCase() === '/home'
               }
             >
               Home

@@ -11,14 +11,14 @@ const Form = ({ id, form }) => {
   const [newBook, setNewBook] = useState({});
   const history = useHistory();
 
-  if (form === 'edit' && id !== 0) {
-    useEffect(() => {
+  useEffect(() => {
+    if (form === 'edit' && id !== 0) {
       getBook(id)
         // eslint-disable-next-line no-shadow
         .then(({ data: book }) => setNewBook(book))
         .catch((err) => console.log(err));
-    }, [id]);
-  }
+    }
+  }, [id]);
 
   const titleRef = useRef();
   const authorRef = useRef();
@@ -28,16 +28,24 @@ const Form = ({ id, form }) => {
 
   const { title, author, summary, published, pages, rating } = newBook;
   // eslint-disable-next-line consistent-return
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // new valeus for the book details if not its value is the old value
-    const newTitle = titleRef.current.value.trim() || title;
-    const newAuthor = authorRef.current.value.trim() || author;
-    const newSummary = summaryRef.current.value.trim() || summary;
-    const newPublished = publishedRef.current.value || published;
-    const newPages = pagesRef.current.value || pages;
-    const newRating = rating;
+    const AEBook = {
+      title: titleRef.current.value.trim() || title,
+      author: authorRef.current.value.trim() || author,
+      summary: summaryRef.current.value.trim() || summary,
+      published: publishedRef.current.value || published,
+      pages: pagesRef.current.value || pages,
+      rating,
+    };
+
+    const {
+      title: newTitle,
+      author: newAuthor,
+      published: newPublished,
+    } = AEBook;
 
     if (!newTitle || !newAuthor) {
       // eslint-disable-next-line no-alert
@@ -57,27 +65,13 @@ const Form = ({ id, form }) => {
 
     if (form === 'edit') {
       // updates the book
-      updateBook(id, {
-        title: newTitle,
-        author: newAuthor,
-        summary: newSummary,
-        published: newPublished,
-        pages: newPages,
-        rating: newRating,
-      })
+      updateBook(id, AEBook)
         // eslint-disable-next-line no-unused-vars
         .then((_) => history.push('/bookshelf'))
         .catch((err) => console.log(err));
     } else {
       // adds the new book
-      addBook({
-        title: newTitle,
-        author: newAuthor,
-        summary: newSummary,
-        published: newPublished,
-        pages: newPages,
-        rating: newRating,
-      })
+      addBook(AEBook)
         // eslint-disable-next-line no-unused-vars
         .then((_) => history.push('/bookshelf'))
         .catch((err) => console.log(err));

@@ -3,12 +3,12 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 const BurgerMenu = () => {
   const [active, setactive] = useState(false);
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   const handleBurger = () => {
     setactive(!active);
   };
-  console.log(active);
+
   return (
     <>
       <button type="button" className="navBar__burger " onClick={handleBurger}>
@@ -21,9 +21,7 @@ const BurgerMenu = () => {
               className="menu__link"
               to="/"
               isActive={() =>
-                location.pathname === '/' ||
-                location.pathname === '/Home' ||
-                location.pathname === '/home'
+                pathname === '/' || pathname.toLowerCase() === '/home'
               }
               onClick={handleBurger}
             >
