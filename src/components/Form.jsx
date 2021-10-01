@@ -86,7 +86,7 @@ const Form = ({ id, form }) => {
   };
   return (
     <main className="mainAdd">
-      <h1 className="title">Add Book</h1>
+      <h1 className="title">{form === 'edit' ? 'Edit Book' : 'Add Book'}</h1>
       <section className="addBook">
         <article className="addBook__wrapper">
           <form className="addBook__forms" onSubmit={handleSubmit}>
@@ -139,7 +139,7 @@ const Form = ({ id, form }) => {
                   id="published"
                   type="text"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  plaeholder="MM/DD/YYYY"
+                  placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
                   value={form === 'edit' ? published : null}
                   ref={publishedRef}

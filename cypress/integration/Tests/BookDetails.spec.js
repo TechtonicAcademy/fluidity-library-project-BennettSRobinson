@@ -4,7 +4,7 @@ context('Book Details Tests', () => {
   beforeEach(() => {
     cy.visit('localhost:1234/bookshelf');
   });
-  it('Verify Book details title, author, and date', () => {
+  it('Verify Book details title and author', () => {
     cy.get('.main a')
       .last()
       .find('.book__details')

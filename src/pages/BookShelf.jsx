@@ -45,7 +45,7 @@ const BookShelf = () => {
         <SearchBar />
       </div>
       <section className="main">
-        {filteredBooks ? (
+        {filteredBooks.length ? (
           <>
             {filteredBooks.map(({ id, title, author }) => (
               <BookForm key={id} title={title} author={author} id={id} />
