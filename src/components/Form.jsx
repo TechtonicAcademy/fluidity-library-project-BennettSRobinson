@@ -63,18 +63,13 @@ const Form = ({ id, form }) => {
       }
     }
 
-    if (form === 'edit') {
-      // updates the book
-      updateBook(id, AEBook)
-        // eslint-disable-next-line no-unused-vars
-        .then((_) => history.push('/bookshelf'))
-        .catch((err) => console.log(err));
-    } else {
-      // adds the new book
-      addBook(AEBook)
-        // eslint-disable-next-line no-unused-vars
-        .then((_) => history.push('/bookshelf'))
-        .catch((err) => console.log(err));
+    try {
+      // eslint-disable-next-line no-unused-expressions
+      form === 'edit' ? await updateBook(id, AEBook) : await addBook(AEBook);
+
+      history.push('/bookshelf');
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -101,7 +96,7 @@ const Form = ({ id, form }) => {
                 id="title"
                 type="text"
                 className="addBook__forms__input"
-                placeholder={form === 'edit' ? title : null}
+                value={form === 'edit' ? title : null}
                 ref={titleRef}
               />
             </label>
@@ -112,7 +107,7 @@ const Form = ({ id, form }) => {
                 id="author"
                 type="text"
                 className="addBook__forms__input"
-                placeholder={form === 'edit' ? author : null}
+                value={form === 'edit' ? author : null}
                 ref={authorRef}
               />
             </label>
@@ -132,7 +127,7 @@ const Form = ({ id, form }) => {
                 cols="50"
                 rows="10"
                 className="addBook__forms__input addBook__forms__input--synopsis"
-                placeholder={form === 'edit' ? summary : null}
+                value={form === 'edit' ? summary : null}
                 ref={summaryRef}
               />
             </label>
@@ -144,9 +139,9 @@ const Form = ({ id, form }) => {
                   id="published"
                   type="text"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  placeholder="MM/DD/YYYY"
+                  plaeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
-                  placeholder={form === 'edit' ? published : null}
+                  value={form === 'edit' ? published : null}
                   ref={publishedRef}
                 />
               </label>
@@ -157,7 +152,7 @@ const Form = ({ id, form }) => {
                   id="pages"
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  placeholder={form === 'edit' ? pages : null}
+                  value={form === 'edit' ? pages : null}
                   ref={pagesRef}
                 />
               </label>
