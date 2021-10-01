@@ -113,15 +113,13 @@
       "id": 15
     },
     {
-      "title": "test",
+      "title": "happy",
       "author": "testman",
+      "summary": "Cthulhu is amazing",
+      "published": "12/13/1932",
+      "pages": "52",
+      "rating": 3,
       "id": 16
-    },
-    {
-      "title": "test",
-      "author": "testman",
-      "published": "12/30/2019",
-      "id": 17
     }
   ]
 }

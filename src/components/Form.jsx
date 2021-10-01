@@ -8,14 +8,14 @@ import Empty from '../assets/pics/empty.jpeg';
 import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const Form = ({ id, form }) => {
-  const [newBook, setNewBook] = useState({});
+  const [editBook, setEditBook] = useState({});
   const history = useHistory();
 
   useEffect(() => {
     if (form === 'edit' && id !== 0) {
       getBook(id)
         // eslint-disable-next-line no-shadow
-        .then(({ data: book }) => setNewBook(book))
+        .then(({ data: book }) => setEditBook(book))
         .catch((err) => console.log(err));
     }
   }, [id]);
@@ -26,7 +26,7 @@ const Form = ({ id, form }) => {
   const publishedRef = useRef();
   const pagesRef = useRef();
 
-  const { title, author, summary, published, pages, rating } = newBook;
+  const { title, author, summary, published, pages, rating } = editBook;
   // eslint-disable-next-line consistent-return
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,7 +74,7 @@ const Form = ({ id, form }) => {
   };
 
   const handleRating = (star) => {
-    setNewBook((prev) => ({ ...prev, rating: star }));
+    setEditBook((prev) => ({ ...prev, rating: star }));
   };
 
   const handleButton = () => {
@@ -83,6 +83,14 @@ const Form = ({ id, form }) => {
     } else {
       history.push('/bookshelf');
     }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setEditBook((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
   return (
     <main className="mainAdd">
@@ -97,6 +105,8 @@ const Form = ({ id, form }) => {
                 type="text"
                 className="addBook__forms__input"
                 value={form === 'edit' ? title : null}
+                onChange={handleChange}
+                name="title"
                 ref={titleRef}
               />
             </label>
@@ -108,6 +118,8 @@ const Form = ({ id, form }) => {
                 type="text"
                 className="addBook__forms__input"
                 value={form === 'edit' ? author : null}
+                onChange={handleChange}
+                name="author"
                 ref={authorRef}
               />
             </label>
@@ -128,6 +140,8 @@ const Form = ({ id, form }) => {
                 rows="10"
                 className="addBook__forms__input addBook__forms__input--synopsis"
                 value={form === 'edit' ? summary : null}
+                onChange={handleChange}
+                name="summary"
                 ref={summaryRef}
               />
             </label>
@@ -142,6 +156,8 @@ const Form = ({ id, form }) => {
                   placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
                   value={form === 'edit' ? published : null}
+                  onChange={handleChange}
+                  name="published"
                   ref={publishedRef}
                 />
               </label>
@@ -153,6 +169,8 @@ const Form = ({ id, form }) => {
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
                   value={form === 'edit' ? pages : null}
+                  onChange={handleChange}
+                  name="pages"
                   ref={pagesRef}
                 />
               </label>
