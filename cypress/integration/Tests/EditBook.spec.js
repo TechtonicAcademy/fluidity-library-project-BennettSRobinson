@@ -1,9 +1,4 @@
 /// <reference types="cypress" />
-// Cypress.Commands.add('toEdit', () => {
-//   cy.get('.main a').last().click();
-//   cy.get('[type=button]').contains('Edit').click();
-//   cy.get('.title').should('have.text', 'Edit Book');
-// });
 
 context('Edit Book Tests', () => {
   beforeEach(() => {
