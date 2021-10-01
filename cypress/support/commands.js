@@ -7,7 +7,7 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
+/// <reference types="cypress" />
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
@@ -23,3 +23,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('toEdit', () => {
+  cy.get('.main a').last().click();
+  cy.get('[type=button]').contains('Edit').click();
+  cy.get('.title').should('have.text', 'Edit Book');
+});

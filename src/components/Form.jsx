@@ -104,7 +104,7 @@ const Form = ({ id, form }) => {
                 id="title"
                 type="text"
                 className="addBook__forms__input"
-                value={form === 'edit' ? title : null}
+                value={form === 'edit' ? title : undefined}
                 onChange={handleChange}
                 name="title"
                 ref={titleRef}
@@ -117,7 +117,7 @@ const Form = ({ id, form }) => {
                 id="author"
                 type="text"
                 className="addBook__forms__input"
-                value={form === 'edit' ? author : null}
+                value={form === 'edit' ? author : undefined}
                 onChange={handleChange}
                 name="author"
                 ref={authorRef}
@@ -139,7 +139,7 @@ const Form = ({ id, form }) => {
                 cols="50"
                 rows="10"
                 className="addBook__forms__input addBook__forms__input--synopsis"
-                value={form === 'edit' ? summary : null}
+                value={form === 'edit' ? summary : undefined}
                 onChange={handleChange}
                 name="summary"
                 ref={summaryRef}
@@ -155,7 +155,7 @@ const Form = ({ id, form }) => {
                   className="addBook__forms__input addBook__forms__input--calendar"
                   placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
-                  value={form === 'edit' ? published : null}
+                  value={form === 'edit' ? published : undefined}
                   onChange={handleChange}
                   name="published"
                   ref={publishedRef}
@@ -168,7 +168,7 @@ const Form = ({ id, form }) => {
                   id="pages"
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  value={form === 'edit' ? pages : null}
+                  value={form === 'edit' ? pages : undefined}
                   onChange={handleChange}
                   name="pages"
                   ref={pagesRef}
