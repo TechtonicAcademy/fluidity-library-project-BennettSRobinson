@@ -8,14 +8,14 @@ import Empty from '../assets/pics/empty.jpeg';
 import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const Form = ({ id, form }) => {
-  const [editBook, setEditBook] = useState({});
+  const [book, setBook] = useState({});
   const history = useHistory();
 
   useEffect(() => {
     if (form === 'edit' && id !== 0) {
       getBook(id)
         // eslint-disable-next-line no-shadow
-        .then(({ data: book }) => setEditBook(book))
+        .then(({ data: book }) => setBook(book))
         .catch((err) => console.log(err));
     }
   }, [id]);
@@ -26,7 +26,7 @@ const Form = ({ id, form }) => {
   const publishedRef = useRef();
   const pagesRef = useRef();
 
-  const { title, author, summary, published, pages, rating } = editBook;
+  const { title, author, summary, published, pages, rating } = book;
   // eslint-disable-next-line consistent-return
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,7 +74,7 @@ const Form = ({ id, form }) => {
   };
 
   const handleRating = (star) => {
-    setEditBook((prev) => ({ ...prev, rating: star }));
+    setBook((prev) => ({ ...prev, rating: star }));
   };
 
   const handleButton = () => {
@@ -87,7 +87,7 @@ const Form = ({ id, form }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setEditBook((prev) => ({
+    setBook((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -104,7 +104,7 @@ const Form = ({ id, form }) => {
                 id="title"
                 type="text"
                 className="addBook__forms__input"
-                defaultValue={form === 'edit' ? title : undefined}
+                defaultValue={form === 'edit' ? title : ''}
                 onChange={handleChange}
                 name="title"
                 ref={titleRef}
@@ -117,7 +117,7 @@ const Form = ({ id, form }) => {
                 id="author"
                 type="text"
                 className="addBook__forms__input"
-                defaultValue={form === 'edit' ? author : undefined}
+                defaultValue={form === 'edit' ? author : ''}
                 onChange={handleChange}
                 name="author"
                 ref={authorRef}
@@ -139,7 +139,7 @@ const Form = ({ id, form }) => {
                 cols="50"
                 rows="10"
                 className="addBook__forms__input addBook__forms__input--synopsis"
-                defaultValue={form === 'edit' ? summary : undefined}
+                defaultValue={form === 'edit' ? summary : ''}
                 onChange={handleChange}
                 name="summary"
                 ref={summaryRef}
@@ -155,7 +155,7 @@ const Form = ({ id, form }) => {
                   className="addBook__forms__input addBook__forms__input--calendar"
                   placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
-                  defaultValue={form === 'edit' ? published : undefined}
+                  defaultValue={form === 'edit' ? published : ''}
                   onChange={handleChange}
                   name="published"
                   ref={publishedRef}
@@ -168,7 +168,7 @@ const Form = ({ id, form }) => {
                   id="pages"
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  defaultValue={form === 'edit' ? pages : undefined}
+                  defaultValue={form === 'edit' ? pages : ''}
                   onChange={handleChange}
                   name="pages"
                   ref={pagesRef}
