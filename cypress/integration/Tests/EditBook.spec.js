@@ -31,6 +31,23 @@ context('Edit Book Tests', () => {
       "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn"
     );
   });
+  it('Adding on to existing fields that allow', () => {
+    cy.toEdit();
+    cy.get('#title')
+      .type(' Best Title')
+      .should('have.value', 'Best Title Best Title');
+    cy.get('#author')
+      .type(' Best Author')
+      .should('have.value', 'Best Author Best Author');
+    cy.get('#summary')
+      .type(' Cthulhu is amazing')
+      .should('have.value', 'Cthulhu is amazing Cthulhu is amazing');
+    cy.get('[type=submit]').contains('Submit').click();
+    cy.get('.title').should(
+      'have.text',
+      "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn"
+    );
+  });
   it('Edit Book Invalid Title', () => {
     cy.toEdit();
     cy.get('[name=title]').clear();
@@ -53,6 +70,8 @@ context('Edit Book Tests', () => {
   it('Test Cancel Button', () => {
     cy.toEdit();
     cy.get('[type=button]').last().click();
-    cy.get('.bookPg__details--title').last().should('have.text', 'Best Title');
+    cy.get('.bookPg__details--title')
+      .last()
+      .should('have.text', 'Best Title Best Title');
   });
 });
