@@ -1,4 +1,6 @@
+require('dotenv').config();
 const express = require('express');
+const { sequelize } = require('./models');
 const logger = require('morgan');
 const cors = require('cors');
 const app = express();
@@ -21,6 +23,8 @@ app.get('/', (req, res) => {
   res.send('Welcome to the homepage');
 });
 
-app.listen(PORT, () => {
-  console.log(`API server listening on http://localhost:${PORT}!`);
+sequelize.sync({ force: process.env.DB_FORCE || false }).then(() => {
+  app.listen(PORT, () => {
+    console.log(`API server listening on http://localhost:${PORT}!`);
+  });
 });
