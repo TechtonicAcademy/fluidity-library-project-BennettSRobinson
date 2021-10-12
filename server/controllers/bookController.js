@@ -41,17 +41,51 @@ module.exports = {
       .then((book) => res.json(book))
       .catch((err) => res.status(422).json(err));
   },
-  create: (req, res) => {
-    const file = req.body.picture;
-    console.log(req.files);
-    if (file) {
-      const filestream = fs.createReadStream(file);
-      filestream.on('error', (err) => {
-        res.json(err);
+  create: async (req, res) => {
+    const file = req.file;
+
+    if (file !== undefined) {
+      uploadParams.Body = file.buffer;
+      uploadParams.Key = file.originalname;
+
+      s3.upload(uploadParams, (err, data) => {
+        if (err) {
+          console.log('Error', err);
+        }
+        if (data) {
+          console.log('Upload Success', data.Location);
+        }
       });
-      uploadParams.Body = filestream;
-      uploadParams.Key = path.basename(file).toString();
-      console.log(uploadParams.Key);
+    }
+
+    const pic =
+      file === undefined
+        ? 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/empty.jpeg'
+        : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
+          uploadParams.Key;
+
+    try {
+      const [author, created] = await Author.findOrCreate({
+        where: { name: req.body.name },
+      });
+
+      await Book.create({
+        ...req.body,
+        picture: pic,
+        AuthorId: author[0].dataValues.id,
+      });
+      res.end();
+    } catch (err) {
+      res.status(422).json(err);
+    }
+  },
+  update: async (req, res) => {
+    const file = req.file;
+
+    if (file !== undefined) {
+      uploadParams.Body = file.buffer;
+      uploadParams.Key = file.originalname;
+
       s3.upload(uploadParams, (err, data) => {
         if (err) {
           console.log('Error', err);
@@ -63,83 +97,42 @@ module.exports = {
     }
     const pic =
       file === undefined
-        ? 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/empty.jpeg'
-        : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
-          uploadParams.Key;
-
-    Author.findOrCreate({
-      where: { name: req.body.name },
-    })
-      .then((author, created) => {
-        Book.create({
-          ...req.body,
-          picture: pic,
-          AuthorId: author[0].dataValues.id,
-        }).then(() => res.end());
-      })
-      .catch((err) => res.status(422).json(err));
-  },
-  update: (req, res) => {
-    const file = req.body.picture;
-    const filestream = fs.createReadStream(file);
-    console.log(filestream);
-    filestream.on('error', (err) => {
-      res.json(err);
-    });
-    console.log(file);
-    uploadParams.Body = file.buffer;
-    uploadParams.Key = path.basename(file);
-    console.log(uploadParams.Key);
-    s3.upload(uploadParams, (err, data) => {
-      if (err) {
-        console.log('Error', err);
-      }
-      if (data) {
-        console.log('Upload Success', data.Location);
-      }
-    });
-
-    const pic =
-      file === undefined
         ? file
         : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
           uploadParams.Key;
-    console.log(uploadParams.Key);
-    if (req.body.name !== undefined) {
-      Author.findOrCreate({
-        where: { name: req.body.name },
-      })
-        .then((author, created) => {
-          Book.update(
-            {
-              ...req.body,
-              picture: pic,
-              AuthorId: author[0].dataValues.id,
-            },
-            {
-              where: { id: req.params.id },
-            }
-          )
-            .then(() => {
-              res.end();
-            })
-            .catch((err) => res.status(422).json(err));
-        })
-        .catch((err) => res.status(422).json(err));
-    } else {
-      Book.update(
-        {
-          ...req.body,
-          picture: pic,
-        },
-        {
-          where: { id: req.params.id },
-        }
-      )
-        .then(() => {
-          res.end();
-        })
-        .catch((err) => res.status(422).json(err));
+
+    try {
+      if (req.body.name !== undefined) {
+        const author = await Author.findOrCreate({
+          where: { name: req.body.name },
+        });
+
+        await Book.update(
+          {
+            ...req.body,
+            picture: pic,
+            AuthorId: author[0].dataValues.id,
+          },
+
+          {
+            where: { id: req.params.id },
+          }
+        );
+      } else {
+        await Book.update(
+          {
+            ...req.body,
+            picture: pic,
+          },
+          {
+            where: { id: req.params.id },
+          }
+        ).then(() => res.end());
+      }
+
+      res.end();
+    } catch (err) {
+      res.status(422).json(err);
     }
   },
   delete: (req, res) => {
