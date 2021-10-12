@@ -1,19 +1,12 @@
-const AWS = require('aws-sdk');
-const fs = require('fs');
-const path = require('path');
-
-AWS.config.update({ region: 'us-east-2' });
-const s3 = new AWS.S3({ params: { Bucket: 'libraryprojectbucket' } });
-const uploadParams = { Key: '', Body: '' };
-
 const { Op } = require('sequelize');
 const { Book, Author } = require('../models');
+const upload = require('../utils/upload.js');
 
+const uploadParams = { Key: '', Body: '' };
 module.exports = {
   findAll: (req, res) => {
     Book.findAll({
       include: [Author],
-      where: req.query,
     })
       .then((books) => res.json(books))
       .catch((err) => res.status(500).json(err));
@@ -47,15 +40,7 @@ module.exports = {
     if (file !== undefined) {
       uploadParams.Body = file.buffer;
       uploadParams.Key = file.originalname;
-
-      s3.upload(uploadParams, (err, data) => {
-        if (err) {
-          console.log('Error', err);
-        }
-        if (data) {
-          console.log('Upload Success', data.Location);
-        }
-      });
+      upload(uploadParams);
     }
 
     const pic =
@@ -86,14 +71,7 @@ module.exports = {
       uploadParams.Body = file.buffer;
       uploadParams.Key = file.originalname;
 
-      s3.upload(uploadParams, (err, data) => {
-        if (err) {
-          console.log('Error', err);
-        }
-        if (data) {
-          console.log('Upload Success', data.Location);
-        }
-      });
+      upload(uploadParams);
     }
     const pic =
       file === undefined
