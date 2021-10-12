@@ -65,7 +65,7 @@ module.exports = {
           uploadParams.Key;
 
     try {
-      const [author, created] = await Author.findOrCreate({
+      const author = await Author.findOrCreate({
         where: { name: req.body.name },
       });
 
