@@ -13,7 +13,7 @@ module.exports = {
   findAll: (req, res) => {
     Book.findAll({
       include: [Author],
-      where: req.search,
+      where: req.query,
     })
       .then((books) => res.json(books))
       .catch((err) => res.status(500).json(err));
