@@ -43,7 +43,7 @@ module.exports = {
   },
   create: (req, res) => {
     const file = req.body.picture;
-
+    console.log(req.files);
     if (file) {
       const filestream = fs.createReadStream(file);
       filestream.on('error', (err) => {
@@ -62,7 +62,7 @@ module.exports = {
       });
     }
     const pic =
-      file === null
+      file === undefined
         ? 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/empty.jpeg'
         : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
           uploadParams.Key;
@@ -71,47 +71,76 @@ module.exports = {
       where: { name: req.body.name },
     })
       .then((author, created) => {
-        console.log(author[0].dataValues.id);
+        Book.create({
+          ...req.body,
+          picture: pic,
+          AuthorId: author[0].dataValues.id,
+        }).then(() => res.end());
       })
       .catch((err) => res.status(422).json(err));
   },
   update: (req, res) => {
     const file = req.body.picture;
-
-    if (file) {
-      const filestream = fs.createReadStream(file);
-      filestream.on('error', (err) => {
-        res.json(err);
-      });
-      uploadParams.Body = filestream;
-      uploadParams.Key = path.basename(file).toString();
-      console.log(uploadParams.Key);
-      s3.upload(uploadParams, (err, data) => {
-        if (err) {
-          console.log('Error', err);
-        }
-        if (data) {
-          console.log('Upload Success', data.Location);
-        }
-      });
-    }
-    const pic =
-      'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
-      uploadParams.Key;
+    const filestream = fs.createReadStream(file);
+    console.log(filestream);
+    filestream.on('error', (err) => {
+      res.json(err);
+    });
+    console.log(file);
+    uploadParams.Body = file.buffer;
+    uploadParams.Key = path.basename(file);
     console.log(uploadParams.Key);
-    Book.update(
-      {
-        ...req.body,
-        picture: pic,
-      },
-      {
-        where: { id: req.params.id },
+    s3.upload(uploadParams, (err, data) => {
+      if (err) {
+        console.log('Error', err);
       }
-    )
-      .then(() => {
-        res.end();
+      if (data) {
+        console.log('Upload Success', data.Location);
+      }
+    });
+
+    const pic =
+      file === undefined
+        ? file
+        : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
+          uploadParams.Key;
+    console.log(uploadParams.Key);
+    if (req.body.name !== undefined) {
+      Author.findOrCreate({
+        where: { name: req.body.name },
       })
-      .catch((err) => res.status(422).json(err));
+        .then((author, created) => {
+          Book.update(
+            {
+              ...req.body,
+              picture: pic,
+              AuthorId: author[0].dataValues.id,
+            },
+            {
+              where: { id: req.params.id },
+            }
+          )
+            .then(() => {
+              res.end();
+            })
+            .catch((err) => res.status(422).json(err));
+        })
+        .catch((err) => res.status(422).json(err));
+    } else {
+      Book.update(
+        {
+          ...req.body,
+          picture: pic,
+        },
+        {
+          where: { id: req.params.id },
+        }
+      )
+        .then(() => {
+          res.end();
+        })
+        .catch((err) => res.status(422).json(err));
+    }
   },
   delete: (req, res) => {
     Book.destroy({
