@@ -2,7 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const formToRequest = multer({
   limits: {
-    fileSize: 10000000,
+    fileSize: 8000000,
   },
 });
 const bookController = require('../../controllers/bookController');
