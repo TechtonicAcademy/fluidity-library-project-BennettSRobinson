@@ -190,7 +190,11 @@ const Form = ({ id, form }) => {
         </article>
         <article className="addBook__wrapper addBook__wrapper--second">
           <div className="container">
-            <img src={form === 'edit' ? cthulhu : Empty} alt="empty" />
+            <img
+              className="container__img"
+              src={form === 'edit' ? cthulhu : Empty}
+              alt="empty"
+            />
           </div>
           <div className="container__button">
             <button type="button">Add Image</button>

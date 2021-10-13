@@ -8,11 +8,15 @@ const PORT = process.env.PORT || 8080;
 const routes = require('./routes');
 
 const corsOptions = {
-  origin: 'http://localhost:1234',
+  origin: ['http://localhost:1234/', 'http://localhost:8080/'],
 };
 
 app.use(logger('dev'));
 app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);

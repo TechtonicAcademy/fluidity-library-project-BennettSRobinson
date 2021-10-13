@@ -86,9 +86,9 @@ $mainColor: turquoise;
     }
   }
   .container {
-    img {
-      width: 250px;
-      height: 350px;
+    &__img {
+      width: 200px;
+      height: 200px;
     }
     &__button {
       display: flex;
@@ -235,7 +235,7 @@ $mainColor: turquoise;
     }
   }
   .container {
-    img {
+    &__img {
       width: 300px;
     }
     &__button {

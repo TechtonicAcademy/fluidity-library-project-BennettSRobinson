@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       picture: {
-        type: DataTypes.BLOB('long'),
+        type: DataTypes.STRING,
         allowNull: true,
       },
     },
