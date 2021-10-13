@@ -4,17 +4,20 @@ import { useParams, useHistory } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 import { getBook, deleteBook } from '../scripts/API';
 import '../styles/Bookdetails.scss';
-import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const BookDetails = () => {
   const [book, setBook] = useState({});
+  const [author, setAuthor] = useState({});
   const { id } = useParams();
   const history = useHistory();
 
   // gets the current book
   useEffect(() => {
     getBook(id)
-      .then(({ data: books }) => setBook(books))
+      .then(({ data }) => {
+        setBook(data);
+        setAuthor(data.Author);
+      })
       .catch((err) => console.log(err));
   }, [id]);
 
@@ -28,7 +31,8 @@ const BookDetails = () => {
   };
 
   // deconstructs the book object
-  const { title, author, summary, published, pages, rating } = book;
+  const { title, summary, published, pages, rating, picture } = book;
+  const { name } = author;
 
   return (
     <main>
@@ -37,14 +41,13 @@ const BookDetails = () => {
           <h1 className="bookPg__details bookPg__details--title bookPg__details--mobile">
             {title}
           </h1>
-          <div
+          <img
             className="bookPg__picture"
-            styles={{
-              background: `url(${cthulhu})`,
-            }}
-          >
-            {}
-          </div>
+            src={picture}
+            crossOrigin="true"
+            alt="bookDetails"
+          />
+
           <div className="bookPg__wrapper__stars">
             <StarRatings
               rating={rating}
@@ -59,7 +62,7 @@ const BookDetails = () => {
           <h1 className="bookPg__details bookPg__details--title bookPg__details--desktop">
             {title}
           </h1>
-          <p className="bookPg__details bookPg__details--author">{author}</p>
+          <p className="bookPg__details bookPg__details--author">{name}</p>
           <p className="bookPg__details bookPg__details--published">
             <i>Published: {published}</i>
           </p>

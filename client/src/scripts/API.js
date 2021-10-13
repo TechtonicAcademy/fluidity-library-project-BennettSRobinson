@@ -9,7 +9,7 @@ export const getBooks = (search) => {
 };
 
 export const getBook = (id) => {
-  return axios.get(`http://localhost:3000/books/${id}`);
+  return axios.get(`http://localhost:8080/api/books/${id}`);
 };
 
 export const addBook = (book) => {
