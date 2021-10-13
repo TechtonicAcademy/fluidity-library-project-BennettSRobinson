@@ -12,13 +12,13 @@ const BookShelf = () => {
   const search = location.state;
 
   useEffect(() => {
-    getBooks()
+    getBooks(search)
       // eslint-disable-next-line no-shadow
       .then((data) => {
         setBooks(data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [search]);
 
   return (
     <main>

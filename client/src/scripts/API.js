@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-export const getBooks = () => {
-  return axios.get('http://localhost:8080/api/books/');
+export const getBooks = (search) => {
+  return axios.get(
+    `http://localhost:8080/api/books/${
+      search ? `/search/?query=${search}` : ''
+    }`
+  );
 };
 
 export const getBook = (id) => {
