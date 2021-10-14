@@ -5,18 +5,22 @@ import PropTypes from 'prop-types';
 import { addBook, updateBook, getBook } from '../scripts/API';
 import isValidDate from '../scripts/dateValidate';
 import Empty from '../assets/pics/empty.jpeg';
-import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const Form = ({ id, form }) => {
   const [book, setBook] = useState({});
   const [image, setImage] = useState(Empty);
+  const [author, setAuthor] = useState();
   const history = useHistory();
 
   useEffect(() => {
     if (form === 'edit' && id !== 0) {
       getBook(id)
         // eslint-disable-next-line no-shadow
-        .then(({ data: book }) => setBook(book))
+        .then(({ data }) => {
+          setBook(data);
+          setAuthor(data.Author);
+          setImage(data.picture);
+        })
         .catch((err) => console.log(err));
     }
   }, [id]);
@@ -27,7 +31,8 @@ const Form = ({ id, form }) => {
   const publishedRef = useRef();
   const pagesRef = useRef();
 
-  const { title, author, summary, published, pages, rating } = book;
+  const { title, summary, published, pages, rating } = book;
+
   // eslint-disable-next-line consistent-return
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,6 +97,7 @@ const Form = ({ id, form }) => {
     //setBook((prev) => ({ ...prev, picture: files[0] }));
   };
   const handleChange = (event) => {
+    // eslint-disable-next-line no-shadow
     const { name, value } = event.target;
     setBook((prev) => ({
       ...prev,
@@ -123,7 +129,14 @@ const Form = ({ id, form }) => {
                 id="author"
                 type="text"
                 className="addBook__forms__input"
-                defaultValue={form === 'edit' ? author : ''}
+                defaultValue={
+                  // eslint-disable-next-line no-nested-ternary
+                  form === 'edit'
+                    ? author !== undefined
+                      ? author.name
+                      : ''
+                    : ''
+                }
                 onChange={handleChange}
                 name="author"
                 ref={authorRef}
@@ -133,7 +146,7 @@ const Form = ({ id, form }) => {
               <div className="container">
                 <img
                   className="container__img"
-                  src={form === 'edit' ? cthulhu : image}
+                  src={image}
                   alt="empty"
                   crossOrigin="true"
                 />
@@ -214,7 +227,7 @@ const Form = ({ id, form }) => {
           <div className="container">
             <img
               className="container__img"
-              src={form === 'edit' ? cthulhu : image}
+              src={image}
               alt="empty"
               crossOrigin="true"
             />
