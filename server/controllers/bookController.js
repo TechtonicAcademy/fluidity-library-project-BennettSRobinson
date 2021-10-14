@@ -2,7 +2,13 @@ const { Op } = require('sequelize');
 const { Book, Author } = require('../models');
 const upload = require('../utils/upload.js');
 
-const uploadParams = { Key: '', Body: '' };
+const uploadParams = {
+  Key: '',
+  Body: '',
+  ContentDisposition: 'inline',
+  ContentType: 'image/jpeg',
+  ACL: 'public-read',
+};
 module.exports = {
   findAll: (req, res) => {
     Book.findAll({
@@ -49,11 +55,12 @@ module.exports = {
         : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
           uploadParams.Key;
 
+    console.log(file);
     try {
       const author = await Author.findOrCreate({
         where: { name: req.body.name },
       });
-
+      console.log(req.body);
       await Book.create({
         ...req.body,
         picture: pic,
@@ -62,6 +69,7 @@ module.exports = {
       res.end();
     } catch (err) {
       res.status(422).json(err);
+      console.log(err);
     }
   },
   update: async (req, res) => {
@@ -79,6 +87,7 @@ module.exports = {
         : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
           uploadParams.Key;
 
+    console.log(req.body);
     try {
       if (req.body.name !== undefined) {
         const author = await Author.findOrCreate({
@@ -114,6 +123,7 @@ module.exports = {
     }
   },
   delete: (req, res) => {
+    console.log('im here');
     Book.destroy({
       where: { id: req.params.id },
     })

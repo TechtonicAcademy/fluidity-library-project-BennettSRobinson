@@ -10,7 +10,10 @@ const Form = ({ id, form }) => {
   const [book, setBook] = useState({});
   const [image, setImage] = useState(Empty);
   const [author, setAuthor] = useState();
+  const [file, setFile] = useState();
   const history = useHistory();
+
+  const formData = new FormData();
 
   useEffect(() => {
     if (form === 'edit' && id !== 0) {
@@ -18,7 +21,7 @@ const Form = ({ id, form }) => {
         // eslint-disable-next-line no-shadow
         .then(({ data }) => {
           setBook(data);
-          setAuthor(data.Author);
+          setAuthor(data.Author.name);
           setImage(data.picture);
         })
         .catch((err) => console.log(err));
@@ -30,17 +33,18 @@ const Form = ({ id, form }) => {
   const summaryRef = useRef();
   const publishedRef = useRef();
   const pagesRef = useRef();
+  const pictureRef = useRef();
 
   const { title, summary, published, pages, rating } = book;
 
   // eslint-disable-next-line consistent-return
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     // new valeus for the book details if not its value is the old value
     const AEBook = {
       title: titleRef.current.value.trim() || title,
-      author: authorRef.current.value.trim() || author,
+      name: authorRef.current.value.trim() || author,
       summary: summaryRef.current.value.trim() || summary,
       published: publishedRef.current.value || published,
       pages: pagesRef.current.value || pages,
@@ -49,7 +53,7 @@ const Form = ({ id, form }) => {
 
     const {
       title: newTitle,
-      author: newAuthor,
+      name: newAuthor,
       published: newPublished,
     } = AEBook;
 
@@ -69,9 +73,23 @@ const Form = ({ id, form }) => {
       }
     }
 
+    // console.log();
+    formData.set('title', AEBook.title);
+    formData.set('name', AEBook.name);
+    formData.set('summary', AEBook.summary || undefined);
+    formData.set('published', AEBook.published || '00/00/0000');
+    formData.set('pages', AEBook.pages || 1);
+    formData.set('rating', AEBook.rating || 0);
+    formData.set('picture', file || undefined);
+
+    for (let value of formData.values()) {
+      console.log(value);
+    }
     try {
       // eslint-disable-next-line no-unused-expressions
-      form === 'edit' ? await updateBook(id, AEBook) : await addBook(AEBook);
+      form === 'edit'
+        ? await updateBook(id, formData)
+        : await addBook(formData);
 
       history.push('/bookshelf');
     } catch (err) {
@@ -91,10 +109,9 @@ const Form = ({ id, form }) => {
     }
   };
   const handleImage = (event) => {
-    console.log('im here');
     const { files } = event.target;
     setImage(URL.createObjectURL(files[0]));
-    //setBook((prev) => ({ ...prev, picture: files[0] }));
+    setFile(files[0]);
   };
   const handleChange = (event) => {
     // eslint-disable-next-line no-shadow
@@ -131,11 +148,7 @@ const Form = ({ id, form }) => {
                 className="addBook__forms__input"
                 defaultValue={
                   // eslint-disable-next-line no-nested-ternary
-                  form === 'edit'
-                    ? author !== undefined
-                      ? author.name
-                      : ''
-                    : ''
+                  form === 'edit' ? author : ''
                 }
                 onChange={handleChange}
                 name="author"
@@ -164,6 +177,7 @@ const Form = ({ id, form }) => {
                 type="file"
                 style={{ visibility: 'hidden' }}
                 onChange={handleImage}
+                onClick={(e) => setFile(e.target.files[0])}
               />
             </div>
 
@@ -190,7 +204,7 @@ const Form = ({ id, form }) => {
                   className="addBook__forms__input addBook__forms__input--calendar"
                   placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
-                  defaultValue={form === 'edit' ? published : ''}
+                  defaultValue={form === 'edit' ? published : '00/00/0000'}
                   onChange={handleChange}
                   name="published"
                   ref={publishedRef}
@@ -203,7 +217,7 @@ const Form = ({ id, form }) => {
                   id="pages"
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  defaultValue={form === 'edit' ? pages : ''}
+                  defaultValue={form === 'edit' ? pages : 1}
                   onChange={handleChange}
                   name="pages"
                   ref={pagesRef}
@@ -243,7 +257,8 @@ const Form = ({ id, form }) => {
               id="getFile"
               type="file"
               style={{ visibility: 'hidden' }}
-              onClick={(e) => handleImage(e)}
+              onChange={handleImage}
+              ref={pictureRef}
             />
           </div>
         </article>
@@ -252,7 +267,7 @@ const Form = ({ id, form }) => {
         <button
           className="buttons-Wrapper__btns buttons-Wrapper__btns--edit"
           type="submit"
-          onClick={handleSubmit}
+          onClick={(e) => handleSubmit(e)}
         >
           {form === 'edit' ? 'Submit' : 'Add Book'}
         </button>
