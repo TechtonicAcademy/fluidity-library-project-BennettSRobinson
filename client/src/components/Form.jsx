@@ -9,6 +9,7 @@ import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const Form = ({ id, form }) => {
   const [book, setBook] = useState({});
+  const [image, setImage] = useState(Empty);
   const history = useHistory();
 
   useEffect(() => {
@@ -84,7 +85,12 @@ const Form = ({ id, form }) => {
       history.push('/bookshelf');
     }
   };
-
+  const handleImage = (event) => {
+    console.log('im here');
+    const { files } = event.target;
+    setImage(URL.createObjectURL(files[0]));
+    //setBook((prev) => ({ ...prev, picture: files[0] }));
+  };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setBook((prev) => ({
@@ -127,8 +133,7 @@ const Form = ({ id, form }) => {
               <div className="container">
                 <img
                   className="container__img"
-                  src={form === 'edit' ? cthulhu : Empty}
-                  onChange={handleChange}
+                  src={form === 'edit' ? cthulhu : image}
                   alt="empty"
                   crossOrigin="true"
                 />
@@ -145,6 +150,7 @@ const Form = ({ id, form }) => {
                 id="getFile"
                 type="file"
                 style={{ visibility: 'hidden' }}
+                onChange={handleImage}
               />
             </div>
 
@@ -208,8 +214,9 @@ const Form = ({ id, form }) => {
           <div className="container">
             <img
               className="container__img"
-              src={form === 'edit' ? cthulhu : Empty}
+              src={form === 'edit' ? cthulhu : image}
               alt="empty"
+              crossOrigin="true"
             />
           </div>
           <div className="container__button">
@@ -219,7 +226,12 @@ const Form = ({ id, form }) => {
             >
               Add Image
             </button>
-            <input id="getFile" type="file" style={{ visibility: 'hidden' }} />
+            <input
+              id="getFile"
+              type="file"
+              style={{ visibility: 'hidden' }}
+              onClick={(e) => handleImage(e)}
+            />
           </div>
         </article>
       </section>
