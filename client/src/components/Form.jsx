@@ -125,11 +125,27 @@ const Form = ({ id, form }) => {
             </label>
             <article className="addBook__wrapper addBook__wrapper--mobile">
               <div className="container">
-                <img src={form === 'edit' ? cthulhu : Empty} alt="empty" />
+                <img
+                  className="container__img"
+                  src={form === 'edit' ? cthulhu : Empty}
+                  onChange={handleChange}
+                  alt="empty"
+                  crossOrigin="true"
+                />
               </div>
             </article>
             <div className="container__button container__button--mobile">
-              <button type="button">Add Image</button>
+              <button
+                type="button"
+                onClick={() => document.getElementById('getFile').click()}
+              >
+                Add Image
+              </button>
+              <input
+                id="getFile"
+                type="file"
+                style={{ visibility: 'hidden' }}
+              />
             </div>
 
             <label htmlFor="summary" className="addBook__forms__wrapper">
@@ -197,7 +213,13 @@ const Form = ({ id, form }) => {
             />
           </div>
           <div className="container__button">
-            <button type="button">Add Image</button>
+            <button
+              type="button"
+              onClick={() => document.getElementById('getFile').click()}
+            >
+              Add Image
+            </button>
+            <input id="getFile" type="file" style={{ visibility: 'hidden' }} />
           </div>
         </article>
       </section>
