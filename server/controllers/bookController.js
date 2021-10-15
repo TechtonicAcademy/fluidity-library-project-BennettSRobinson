@@ -52,8 +52,7 @@ module.exports = {
     const pic =
       file === undefined
         ? 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/empty.jpeg'
-        : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
-          uploadParams.Key;
+        : `https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/${uploadParams.Key}`;
     //fixes the weird values from the form-data front-end
     const synopsis = summary === 'undefined' ? undefined : summary;
     const date = published === 'undefined' ? undefined : published;
@@ -62,7 +61,7 @@ module.exports = {
       const author = await Author.findOrCreate({
         where: { name: req.body.name },
       });
-      console.log(req.body);
+
       await Book.create({
         ...req.body,
         summary: synopsis,
@@ -87,8 +86,7 @@ module.exports = {
     const pic =
       file === undefined
         ? file
-        : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
-          uploadParams.Key;
+        : `https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/${uploadParams.Key}`;
 
     const synopsis = summary === 'null' ? undefined : summary;
     const date = published === 'null' ? undefined : published;

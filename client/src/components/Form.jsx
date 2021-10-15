@@ -7,7 +7,7 @@ import isValidDate from '../scripts/dateValidate';
 import Empty from '../assets/pics/empty.jpeg';
 
 const Form = ({ id, form }) => {
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState({ rating: 0 });
   const [image, setImage] = useState(Empty);
   const [author, setAuthor] = useState();
   const [file, setFile] = useState();
