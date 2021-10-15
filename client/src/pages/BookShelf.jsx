@@ -7,7 +7,6 @@ import '../styles/bookShelf.scss';
 
 const BookShelf = () => {
   const [books, setBooks] = useState([]);
-  // const [filteredBooks, setfilteredBooks] = useState([]);
   const location = useLocation();
   const search = location.state;
 

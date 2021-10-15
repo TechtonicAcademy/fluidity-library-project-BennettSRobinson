@@ -73,18 +73,10 @@ const Form = ({ id, form }) => {
       }
     }
 
-    // console.log();
-    formData.set('title', AEBook.title);
-    formData.set('name', AEBook.name);
-    formData.set('summary', AEBook.summary || undefined);
-    formData.set('published', AEBook.published || '00/00/0000');
-    formData.set('pages', AEBook.pages || 1);
-    formData.set('rating', AEBook.rating || 0);
-    formData.set('picture', file || undefined);
-
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    Object.keys(AEBook).forEach((key) => {
+      formData.append(key, AEBook[key]);
+    });
+    formData.append('picture', file);
     try {
       // eslint-disable-next-line no-unused-expressions
       form === 'edit'
@@ -177,7 +169,6 @@ const Form = ({ id, form }) => {
                 type="file"
                 style={{ visibility: 'hidden' }}
                 onChange={handleImage}
-                onClick={(e) => setFile(e.target.files[0])}
               />
             </div>
 
@@ -204,7 +195,7 @@ const Form = ({ id, form }) => {
                   className="addBook__forms__input addBook__forms__input--calendar"
                   placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
-                  defaultValue={form === 'edit' ? published : '00/00/0000'}
+                  defaultValue={form === 'edit' ? published : ''}
                   onChange={handleChange}
                   name="published"
                   ref={publishedRef}
@@ -217,7 +208,7 @@ const Form = ({ id, form }) => {
                   id="pages"
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  defaultValue={form === 'edit' ? pages : 1}
+                  defaultValue={form === 'edit' ? pages : 0}
                   onChange={handleChange}
                   name="pages"
                   ref={pagesRef}

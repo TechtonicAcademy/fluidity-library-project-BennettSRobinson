@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 export const getBooks = (search) => {
+  const searchUrl = `/search/?query=${search}`;
   return axios.get(
-    `http://localhost:8080/api/books/${
-      search ? `/search/?query=${search}` : ''
-    }`
+    `http://localhost:8080/api/books/${search ? searchUrl : ''}`
   );
 };
 
