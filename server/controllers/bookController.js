@@ -91,37 +91,23 @@ module.exports = {
     const synopsis = summary === 'null' ? undefined : summary;
     const date = published === 'null' ? undefined : published;
     try {
-      if (req.body.name !== undefined) {
-        const author = await Author.findOrCreate({
-          where: { name: req.body.name },
-        });
+      const author = await Author.findOrCreate({
+        where: { name: req.body.name },
+      });
 
-        await Book.update(
-          {
-            ...req.body,
-            picture: pic,
-            summary: synopsis,
-            published: date,
-            AuthorId: author[0].dataValues.id,
-          },
+      await Book.update(
+        {
+          ...req.body,
+          picture: pic,
+          summary: synopsis,
+          published: date,
+          AuthorId: author[0].dataValues.id,
+        },
 
-          {
-            where: { id: req.params.id },
-          }
-        );
-      } else {
-        await Book.update(
-          {
-            ...req.body,
-            summary: synopsis,
-            published: date,
-            picture: pic,
-          },
-          {
-            where: { id: req.params.id },
-          }
-        ).then(() => res.end());
-      }
+        {
+          where: { id: req.params.id },
+        }
+      );
 
       res.end();
     } catch (err) {
