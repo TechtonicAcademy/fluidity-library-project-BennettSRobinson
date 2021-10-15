@@ -58,7 +58,6 @@ module.exports = {
     const synopsis = summary === 'undefined' ? undefined : summary;
     const date = published === 'undefined' ? undefined : published;
 
-    console.log(file);
     try {
       const author = await Author.findOrCreate({
         where: { name: req.body.name },
@@ -74,7 +73,6 @@ module.exports = {
       res.end();
     } catch (err) {
       res.status(422).json(err);
-      console.log(err);
     }
   },
   update: async (req, res) => {
@@ -130,11 +128,9 @@ module.exports = {
       res.end();
     } catch (err) {
       res.status(422).json(err);
-      console.log(err);
     }
   },
   delete: (req, res) => {
-    console.log('im here');
     Book.destroy({
       where: { id: req.params.id },
     })
