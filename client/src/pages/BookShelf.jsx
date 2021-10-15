@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import BookForm from '../components/BookForm';
+import Book from '../components/Book';
 import SearchBar from '../components/SearchBar';
 import { getBooks } from '../scripts/API';
 import '../styles/bookShelf.scss';
@@ -33,7 +33,7 @@ const BookShelf = () => {
         {books.length ? (
           <>
             {books.map(({ id, title, picture, Author: { name } }) => (
-              <BookForm
+              <Book
                 key={id}
                 title={title}
                 id={id}

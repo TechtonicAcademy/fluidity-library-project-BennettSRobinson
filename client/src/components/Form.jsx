@@ -41,7 +41,7 @@ const Form = ({ id, form }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // new valeus for the book details if not its value is the old value
+    // // new valeus for the book details if not its value is the old value
     const AEBook = {
       title: titleRef.current.value.trim() || title,
       name: authorRef.current.value.trim() || author,
@@ -105,14 +105,7 @@ const Form = ({ id, form }) => {
     setImage(URL.createObjectURL(files[0]));
     setFile(files[0]);
   };
-  const handleChange = (event) => {
-    // eslint-disable-next-line no-shadow
-    const { name, value } = event.target;
-    setBook((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+
   return (
     <main className="mainAdd">
       <h1 className="title">{form === 'edit' ? 'Edit Book' : 'Add Book'}</h1>
@@ -126,7 +119,6 @@ const Form = ({ id, form }) => {
                 type="text"
                 className="addBook__forms__input"
                 defaultValue={form === 'edit' ? title : ''}
-                onChange={handleChange}
                 name="title"
                 ref={titleRef}
               />
@@ -142,7 +134,6 @@ const Form = ({ id, form }) => {
                   // eslint-disable-next-line no-nested-ternary
                   form === 'edit' ? author : ''
                 }
-                onChange={handleChange}
                 name="author"
                 ref={authorRef}
               />
@@ -180,7 +171,6 @@ const Form = ({ id, form }) => {
                 rows="10"
                 className="addBook__forms__input addBook__forms__input--synopsis"
                 defaultValue={form === 'edit' ? summary : ''}
-                onChange={handleChange}
                 name="summary"
                 ref={summaryRef}
               />
@@ -196,7 +186,6 @@ const Form = ({ id, form }) => {
                   placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
                   defaultValue={form === 'edit' ? published : ''}
-                  onChange={handleChange}
                   name="published"
                   ref={publishedRef}
                 />
@@ -209,7 +198,6 @@ const Form = ({ id, form }) => {
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
                   defaultValue={form === 'edit' ? pages : 0}
-                  onChange={handleChange}
                   name="pages"
                   ref={pagesRef}
                 />

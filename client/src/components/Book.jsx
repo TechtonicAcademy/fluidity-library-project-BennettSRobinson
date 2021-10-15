@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
-const BookForm = ({ id, title, author, picture }) => {
-  console.log(picture);
+const Book = ({ id, title, author, picture }) => {
   return (
     <Link className="book " to={`/details/${id}`}>
       <div className="book__picture__container">
@@ -11,7 +10,7 @@ const BookForm = ({ id, title, author, picture }) => {
           className="book__picture"
           src={picture}
           crossOrigin="true"
-          alt="book"
+          alt={title}
         />
       </div>
       <p className="book__details">{title}</p>
@@ -20,8 +19,10 @@ const BookForm = ({ id, title, author, picture }) => {
   );
 };
 
-BookForm.propTypes = {
+Book.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
 };
-export default BookForm;
+export default Book;
