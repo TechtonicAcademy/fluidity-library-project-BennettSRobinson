@@ -1,4 +1,5 @@
-insert into Authors (name) values ("H.P. Lovecraft"), ('Keith Davidson')
+use sql3444149;
+insert into Authors (name) values ("H.P. Lovecraft"), ('Keith Davidson');
 insert into Books (title, summary, published, pages, rating,picture, AuthorId)
 values (
     "Call of Cthulhu", 
@@ -6,7 +7,7 @@ values (
     "11/01/1919", 
     4, 
     4, 
-    'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/CallOfCthulhu.jpg',
+    'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/81JSqv9QqAL.jpeg',
     1
 ), 
 (
@@ -24,16 +25,16 @@ values (
    "03/01/1927",
     40,
     3,
-    'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/91EiE+zQcmL.jpeg', 
+    'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/91EiE%2BzQcmL.jpeg', 
     1
 ),
 (
     "Colour out of space",
    " In the tale, an unnamed narrator pieces together the story of an area known by the locals as the 'blasted heath' in the wild hills west of Arkham, Massachusetts. The narrator discovers that many years ago a meteorite crashed there, draining the life force from anything living nearby; vegetation grows large, but tasteless, animals are driven mad and deformed into grotesque shapes, and the people go insane or die one by one.",
-    "03/01/1927"
+    "03/01/1927",
     30,
     5,
-    'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/81NeKHR+iaL.jpeg',
+    'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/81NeKHR%2BiaL.jpeg',
     1
 ),
 (

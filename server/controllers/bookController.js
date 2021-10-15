@@ -42,7 +42,7 @@ module.exports = {
   },
   create: async (req, res) => {
     const file = req.file;
-
+    const { summary, published } = req.body;
     if (file !== undefined) {
       uploadParams.Body = file.buffer;
       uploadParams.Key = file.originalname;
@@ -54,6 +54,9 @@ module.exports = {
         ? 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/empty.jpeg'
         : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
           uploadParams.Key;
+    //fixes the weird values from the form-data front-end
+    const synopsis = summary === 'undefined' ? undefined : summary;
+    const date = published === 'undefined' ? undefined : published;
 
     console.log(file);
     try {
@@ -63,6 +66,8 @@ module.exports = {
       console.log(req.body);
       await Book.create({
         ...req.body,
+        summary: synopsis,
+        published: date,
         picture: pic,
         AuthorId: author[0].dataValues.id,
       });
@@ -74,7 +79,7 @@ module.exports = {
   },
   update: async (req, res) => {
     const file = req.file;
-
+    const { summary, published } = req.body;
     if (file !== undefined) {
       uploadParams.Body = file.buffer;
       uploadParams.Key = file.originalname;
@@ -87,7 +92,8 @@ module.exports = {
         : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
           uploadParams.Key;
 
-    console.log(req.body);
+    const synopsis = summary === 'null' ? undefined : summary;
+    const date = published === 'null' ? undefined : published;
     try {
       if (req.body.name !== undefined) {
         const author = await Author.findOrCreate({
@@ -98,6 +104,8 @@ module.exports = {
           {
             ...req.body,
             picture: pic,
+            summary: synopsis,
+            published: date,
             AuthorId: author[0].dataValues.id,
           },
 
@@ -109,6 +117,8 @@ module.exports = {
         await Book.update(
           {
             ...req.body,
+            summary: synopsis,
+            published: date,
             picture: pic,
           },
           {
@@ -120,6 +130,7 @@ module.exports = {
       res.end();
     } catch (err) {
       res.status(422).json(err);
+      console.log(err);
     }
   },
   delete: (req, res) => {
