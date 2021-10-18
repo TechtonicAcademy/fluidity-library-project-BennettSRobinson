@@ -1,38 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import BookForm from '../components/BookForm';
+import Book from '../components/Book';
 import SearchBar from '../components/SearchBar';
 import { getBooks } from '../scripts/API';
 import '../styles/bookShelf.scss';
 
 const BookShelf = () => {
   const [books, setBooks] = useState([]);
-  const [filteredBooks, setfilteredBooks] = useState([]);
   const location = useLocation();
   const search = location.state;
 
   useEffect(() => {
-    getBooks()
+    getBooks(search)
       // eslint-disable-next-line no-shadow
-      .then(({ data: books }) => {
-        setBooks(books);
-        setfilteredBooks(books);
+      .then((data) => {
+        setBooks(data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    if (search)
-      setfilteredBooks(
-        books.filter((book) => {
-          return (
-            book.author.toLowerCase().includes(search.toLowerCase()) ||
-            book.title.toLowerCase().includes(search.toLowerCase())
-          );
-        })
-      );
-    else setfilteredBooks(books);
-  }, [search, books]);
+  }, [search]);
 
   return (
     <main>
@@ -45,10 +30,16 @@ const BookShelf = () => {
         <SearchBar />
       </div>
       <section className="main">
-        {filteredBooks.length ? (
+        {books.length ? (
           <>
-            {filteredBooks.map(({ id, title, author }) => (
-              <BookForm key={id} title={title} author={author} id={id} />
+            {books.map(({ id, title, picture, Author: { name } }) => (
+              <Book
+                key={id}
+                title={title}
+                id={id}
+                picture={picture}
+                author={name}
+              />
             ))}
           </>
         ) : (

@@ -5,17 +5,25 @@ import PropTypes from 'prop-types';
 import { addBook, updateBook, getBook } from '../scripts/API';
 import isValidDate from '../scripts/dateValidate';
 import Empty from '../assets/pics/empty.jpeg';
-import cthulhu from '../assets/pics/CallOfCthulhu.jpg';
 
 const Form = ({ id, form }) => {
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState({ rating: 0 });
+  const [image, setImage] = useState(Empty);
+  const [author, setAuthor] = useState();
+  const [file, setFile] = useState();
   const history = useHistory();
+
+  const formData = new FormData();
 
   useEffect(() => {
     if (form === 'edit' && id !== 0) {
       getBook(id)
         // eslint-disable-next-line no-shadow
-        .then(({ data: book }) => setBook(book))
+        .then(({ data }) => {
+          setBook(data);
+          setAuthor(data.Author.name);
+          setImage(data.picture);
+        })
         .catch((err) => console.log(err));
     }
   }, [id]);
@@ -25,16 +33,18 @@ const Form = ({ id, form }) => {
   const summaryRef = useRef();
   const publishedRef = useRef();
   const pagesRef = useRef();
+  const pictureRef = useRef();
 
-  const { title, author, summary, published, pages, rating } = book;
+  const { title, summary, published, pages, rating } = book;
+
   // eslint-disable-next-line consistent-return
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    // new valeus for the book details if not its value is the old value
+    // // new valeus for the book details if not its value is the old value
     const AEBook = {
       title: titleRef.current.value.trim() || title,
-      author: authorRef.current.value.trim() || author,
+      name: authorRef.current.value.trim() || author,
       summary: summaryRef.current.value.trim() || summary,
       published: publishedRef.current.value || published,
       pages: pagesRef.current.value || pages,
@@ -43,7 +53,7 @@ const Form = ({ id, form }) => {
 
     const {
       title: newTitle,
-      author: newAuthor,
+      name: newAuthor,
       published: newPublished,
     } = AEBook;
 
@@ -63,9 +73,15 @@ const Form = ({ id, form }) => {
       }
     }
 
+    Object.keys(AEBook).forEach((key) => {
+      formData.append(key, AEBook[key]);
+    });
+    formData.append('picture', file);
     try {
       // eslint-disable-next-line no-unused-expressions
-      form === 'edit' ? await updateBook(id, AEBook) : await addBook(AEBook);
+      form === 'edit'
+        ? await updateBook(id, formData)
+        : await addBook(formData);
 
       history.push('/bookshelf');
     } catch (err) {
@@ -84,14 +100,12 @@ const Form = ({ id, form }) => {
       history.push('/bookshelf');
     }
   };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setBook((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleImage = (event) => {
+    const { files } = event.target;
+    setImage(URL.createObjectURL(files[0]));
+    setFile(files[0]);
   };
+
   return (
     <main className="mainAdd">
       <h1 className="title">{form === 'edit' ? 'Edit Book' : 'Add Book'}</h1>
@@ -105,7 +119,6 @@ const Form = ({ id, form }) => {
                 type="text"
                 className="addBook__forms__input"
                 defaultValue={form === 'edit' ? title : ''}
-                onChange={handleChange}
                 name="title"
                 ref={titleRef}
               />
@@ -117,19 +130,37 @@ const Form = ({ id, form }) => {
                 id="author"
                 type="text"
                 className="addBook__forms__input"
-                defaultValue={form === 'edit' ? author : ''}
-                onChange={handleChange}
+                defaultValue={
+                  // eslint-disable-next-line no-nested-ternary
+                  form === 'edit' ? author : ''
+                }
                 name="author"
                 ref={authorRef}
               />
             </label>
             <article className="addBook__wrapper addBook__wrapper--mobile">
               <div className="container">
-                <img src={form === 'edit' ? cthulhu : Empty} alt="empty" />
+                <img
+                  className="container__img"
+                  src={image}
+                  alt="empty"
+                  crossOrigin="true"
+                />
               </div>
             </article>
             <div className="container__button container__button--mobile">
-              <button type="button">Add Image</button>
+              <button
+                type="button"
+                onClick={() => document.getElementById('getFile').click()}
+              >
+                Add Image
+              </button>
+              <input
+                id="getFile"
+                type="file"
+                style={{ visibility: 'hidden' }}
+                onChange={handleImage}
+              />
             </div>
 
             <label htmlFor="summary" className="addBook__forms__wrapper">
@@ -140,7 +171,6 @@ const Form = ({ id, form }) => {
                 rows="10"
                 className="addBook__forms__input addBook__forms__input--synopsis"
                 defaultValue={form === 'edit' ? summary : ''}
-                onChange={handleChange}
                 name="summary"
                 ref={summaryRef}
               />
@@ -156,7 +186,6 @@ const Form = ({ id, form }) => {
                   placeholder="MM/DD/YYYY"
                   // eslint-disable-next-line react/jsx-no-duplicate-props
                   defaultValue={form === 'edit' ? published : ''}
-                  onChange={handleChange}
                   name="published"
                   ref={publishedRef}
                 />
@@ -168,8 +197,7 @@ const Form = ({ id, form }) => {
                   id="pages"
                   type="number"
                   className="addBook__forms__input addBook__forms__input--calendar"
-                  defaultValue={form === 'edit' ? pages : ''}
-                  onChange={handleChange}
+                  defaultValue={form === 'edit' ? pages : 0}
                   name="pages"
                   ref={pagesRef}
                 />
@@ -190,10 +218,27 @@ const Form = ({ id, form }) => {
         </article>
         <article className="addBook__wrapper addBook__wrapper--second">
           <div className="container">
-            <img src={form === 'edit' ? cthulhu : Empty} alt="empty" />
+            <img
+              className="container__img"
+              src={image}
+              alt="empty"
+              crossOrigin="true"
+            />
           </div>
           <div className="container__button">
-            <button type="button">Add Image</button>
+            <button
+              type="button"
+              onClick={() => document.getElementById('getFile').click()}
+            >
+              Add Image
+            </button>
+            <input
+              id="getFile"
+              type="file"
+              style={{ visibility: 'hidden' }}
+              onChange={handleImage}
+              ref={pictureRef}
+            />
           </div>
         </article>
       </section>
@@ -201,7 +246,7 @@ const Form = ({ id, form }) => {
         <button
           className="buttons-Wrapper__btns buttons-Wrapper__btns--edit"
           type="submit"
-          onClick={handleSubmit}
+          onClick={(e) => handleSubmit(e)}
         >
           {form === 'edit' ? 'Submit' : 'Add Book'}
         </button>

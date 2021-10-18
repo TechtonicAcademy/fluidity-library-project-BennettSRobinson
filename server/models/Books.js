@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         validate: {
           isNumeric: true,
-          min: 1,
+          min: 0,
         },
       },
       rating: {
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       picture: {
-        type: DataTypes.BLOB('long'),
+        type: DataTypes.STRING,
         allowNull: true,
       },
     },

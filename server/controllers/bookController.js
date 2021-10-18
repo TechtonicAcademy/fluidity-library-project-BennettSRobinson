@@ -2,7 +2,13 @@ const { Op } = require('sequelize');
 const { Book, Author } = require('../models');
 const upload = require('../utils/upload.js');
 
-const uploadParams = { Key: '', Body: '' };
+const uploadParams = {
+  Key: '',
+  Body: '',
+  ContentDisposition: 'inline',
+  ContentType: 'image/jpeg',
+  ACL: 'public-read',
+};
 module.exports = {
   findAll: (req, res) => {
     Book.findAll({
@@ -36,7 +42,7 @@ module.exports = {
   },
   create: async (req, res) => {
     const file = req.file;
-
+    const { summary, published } = req.body;
     if (file !== undefined) {
       uploadParams.Body = file.buffer;
       uploadParams.Key = file.originalname;
@@ -46,8 +52,10 @@ module.exports = {
     const pic =
       file === undefined
         ? 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/empty.jpeg'
-        : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
-          uploadParams.Key;
+        : `https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/${uploadParams.Key}`;
+    //fixes the weird values from the form-data front-end
+    const synopsis = summary === 'undefined' ? undefined : summary;
+    const date = published === 'undefined' ? undefined : published;
 
     try {
       const author = await Author.findOrCreate({
@@ -56,6 +64,8 @@ module.exports = {
 
       await Book.create({
         ...req.body,
+        summary: synopsis,
+        published: date,
         picture: pic,
         AuthorId: author[0].dataValues.id,
       });
@@ -66,7 +76,7 @@ module.exports = {
   },
   update: async (req, res) => {
     const file = req.file;
-
+    const { summary, published } = req.body;
     if (file !== undefined) {
       uploadParams.Body = file.buffer;
       uploadParams.Key = file.originalname;
@@ -76,37 +86,28 @@ module.exports = {
     const pic =
       file === undefined
         ? file
-        : 'https://libraryprojectbucket.s3.us-east-2.amazonaws.com/' +
-          uploadParams.Key;
+        : `https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/${uploadParams.Key}`;
 
+    const synopsis = summary === 'null' ? undefined : summary;
+    const date = published === 'null' ? undefined : published;
     try {
-      if (req.body.name !== undefined) {
-        const author = await Author.findOrCreate({
-          where: { name: req.body.name },
-        });
+      const author = await Author.findOrCreate({
+        where: { name: req.body.name },
+      });
 
-        await Book.update(
-          {
-            ...req.body,
-            picture: pic,
-            AuthorId: author[0].dataValues.id,
-          },
+      await Book.update(
+        {
+          ...req.body,
+          picture: pic,
+          summary: synopsis,
+          published: date,
+          AuthorId: author[0].dataValues.id,
+        },
 
-          {
-            where: { id: req.params.id },
-          }
-        );
-      } else {
-        await Book.update(
-          {
-            ...req.body,
-            picture: pic,
-          },
-          {
-            where: { id: req.params.id },
-          }
-        ).then(() => res.end());
-      }
+        {
+          where: { id: req.params.id },
+        }
+      );
 
       res.end();
     } catch (err) {

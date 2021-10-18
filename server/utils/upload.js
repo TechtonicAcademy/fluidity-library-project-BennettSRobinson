@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 
-AWS.config.update({ region: 'us-east-2' });
-const s3 = new AWS.S3({ params: { Bucket: 'libraryprojectbucket' } });
+AWS.config.update({ region: process.env.BUCKET_REGION });
+const s3 = new AWS.S3({ params: { Bucket: process.env.BUCKET_NAME } });
 
 function upload(params) {
   s3.upload(params, (err, data) => {
