@@ -46,8 +46,8 @@ const Form = ({ id, form }) => {
     // // new valeus for the book details if not its value is the old value
     const AEBook = {
       title: titleRef.current.value.trim() || title,
-      first: firstNameRef.current.value.trim() || author,
-      last: lastNameRef.current.value.trim() || author,
+      first: firstNameRef.current.value.trim() || firstName,
+      last: lastNameRef.current.value.trim() || lastName,
       summary: summaryRef.current.value.trim() || summary,
       published: publishedRef.current.value || published,
       pages: pagesRef.current.value || pages,
