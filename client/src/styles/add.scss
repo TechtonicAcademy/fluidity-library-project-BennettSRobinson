@@ -85,7 +85,8 @@ $mainColor: turquoise;
         &--name {
           border: 2px black solid;
           border-radius: 9px;
-          padding: 2% 56px 1% 5px;
+          padding: 2% 50px 1% 5px;
+          margin: 0 0 0 2%;
         }
       }
     }
@@ -152,7 +153,7 @@ $mainColor: turquoise;
           padding: 4% 3% 2% 3%;
         }
         &--name {
-          width: 193px;
+          width: 189px;
         }
       }
     }
@@ -243,7 +244,7 @@ $mainColor: turquoise;
           padding: 10px 10px;
         }
         &--name {
-          margin: 0 auto;
+          margin: 0 auto 10px;
           width: 300px;
         }
       }

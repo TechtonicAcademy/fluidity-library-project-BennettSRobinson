@@ -32,7 +32,7 @@ const BookDetails = () => {
 
   // deconstructs the book object
   const { title, summary, published, pages, rating, picture } = book;
-  const { name } = author;
+  const { firstName, lastName } = author;
 
   return (
     <main>
@@ -62,7 +62,7 @@ const BookDetails = () => {
           <h1 className="bookPg__details bookPg__details--title bookPg__details--desktop">
             {title}
           </h1>
-          <p className="bookPg__details bookPg__details--author">{name}</p>
+          <p className="bookPg__details bookPg__details--author">{`${firstName} ${lastName}`}</p>
           <p className="bookPg__details bookPg__details--published">
             <i>Published: {published}</i>
           </p>
