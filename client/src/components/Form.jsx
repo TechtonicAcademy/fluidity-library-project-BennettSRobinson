@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 import PropTypes from 'prop-types';
 import { addBook, updateBook, getBook } from '../scripts/API';
-import isValidDate from '../scripts/dateValidate';
+import isValidDate from '../scripts/isValidDate';
 import Empty from '../assets/pics/empty.jpeg';
 
 const Form = ({ id, form }) => {

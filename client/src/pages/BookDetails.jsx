@@ -23,7 +23,7 @@ const BookDetails = () => {
 
   // handles the delete button
   // eslint-disable-next-line no-shadow
-  const handleDelete = (id) => {
+  const handleDelete = () => {
     deleteBook(id)
       // eslint-disable-next-line no-unused-vars
       .then((_) => history.push('/bookshelf'))
@@ -84,7 +84,7 @@ const BookDetails = () => {
         <button
           type="button"
           className="buttons-Wrapper__btns buttons-Wrapper__btns--delete"
-          onClick={() => handleDelete(id)}
+          onClick={handleDelete}
         >
           Delete this Book
         </button>
