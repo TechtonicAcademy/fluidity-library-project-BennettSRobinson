@@ -45,7 +45,7 @@ const BookDetails = () => {
             className="bookPg__picture"
             src={picture}
             crossOrigin="true"
-            alt="bookDetails"
+            alt={title}
           />
 
           <div className="bookPg__wrapper__stars">
