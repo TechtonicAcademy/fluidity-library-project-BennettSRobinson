@@ -32,15 +32,20 @@ const BookShelf = () => {
       <section className="main">
         {books.length ? (
           <>
-            {books.map(({ id, title, picture, Author: { name } }) => (
-              <Book
-                key={id}
-                title={title}
-                id={id}
-                picture={picture}
-                author={name}
-              />
-            ))}
+            {books.map(
+              ({ id, title, picture, Author: { firstName, lastName } }) => {
+                const name = firstName + lastName;
+                return (
+                  <Book
+                    key={id}
+                    title={title}
+                    id={id}
+                    picture={picture}
+                    author={name}
+                  />
+                );
+              }
+            )}
           </>
         ) : (
           <h2>There are no books in the shelf yet</h2>

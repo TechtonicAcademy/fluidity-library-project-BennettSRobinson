@@ -127,9 +127,20 @@ const Form = ({ id, form }) => {
             <label htmlFor="author" className="addBook__forms__wrapper">
               <span className="addBook__forms__title">Author</span>
               <input
-                id="author"
+                id="first"
                 type="text"
-                className="addBook__forms__input"
+                className="addBook__forms__input--name"
+                defaultValue={
+                  // eslint-disable-next-line no-nested-ternary
+                  form === 'edit' ? author : ''
+                }
+                name="author"
+                ref={authorRef}
+              />
+              <input
+                id="last"
+                type="text"
+                className="addBook__forms__input--name"
                 defaultValue={
                   // eslint-disable-next-line no-nested-ternary
                   form === 'edit' ? author : ''

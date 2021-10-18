@@ -25,7 +25,8 @@ module.exports = {
       where: {
         [Op.or]: [
           { title: { [Op.substring]: query } },
-          { '$Author.name$': { [Op.substring]: query } },
+          { '$Author.first_name$': { [Op.substring]: query } },
+          { '$Author.last_name$': { [Op.substring]: query } },
         ],
       },
     })
@@ -59,7 +60,10 @@ module.exports = {
 
     try {
       const author = await Author.findOrCreate({
-        where: { name: req.body.name },
+        where: {
+          firstName: req.body.first,
+          lastName: req.body.last,
+        },
       });
 
       await Book.create({
@@ -92,7 +96,10 @@ module.exports = {
     const date = published === 'null' ? undefined : published;
     try {
       const author = await Author.findOrCreate({
-        where: { name: req.body.name },
+        where: {
+          firstName: req.body.first,
+          lastName: req.body.last,
+        },
       });
 
       await Book.update(
