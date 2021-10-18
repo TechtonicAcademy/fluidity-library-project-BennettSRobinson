@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import pict from '../assets/pics/CallOfCthulhu.jpg';
 
 // eslint-disable-next-line react/prop-types
-const BookForm = ({ id, title, author }) => {
+const Book = ({ id, title, author, picture }) => {
   return (
     <Link className="book " to={`/details/${id}`}>
-      <div
-        className="book__picture"
-        styles={{
-          background: `url(${pict})`,
-        }}
-      >
-        {}
+      <div className="book__picture__container">
+        <img
+          className="book__picture"
+          src={picture}
+          crossOrigin="true"
+          alt={title}
+        />
       </div>
       <p className="book__details">{title}</p>
       <p className="book__details">{author}</p>
@@ -20,9 +19,10 @@ const BookForm = ({ id, title, author }) => {
   );
 };
 
-BookForm.propTypes = {
+Book.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
 };
-export default BookForm;
+export default Book;

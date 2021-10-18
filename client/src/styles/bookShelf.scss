@@ -39,8 +39,8 @@ $backColor: gray;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 22vw;
-    height: 29vh;
+    width: 250px;
+    height: 300px;
     padding: 18px 18px;
     margin: 18px 29px;
     border: 1px solid black;
@@ -49,13 +49,14 @@ $backColor: gray;
     &__picture {
       display: flex;
       justify-content: center;
-      background: url('../assets/pics/CallOfCthulhu.jpg');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 80%;
-      width: 80%;
+      object-fit: center;
+      width: 200px;
+      &__container {
+        display: inherit;
+        height: 200px;
+      }
     }
+
     &__details {
       margin: 10px 0 0 0;
       white-space: nowrap;
@@ -87,8 +88,14 @@ $backColor: gray;
     margin-top: 10px;
   }
   .book {
-    width: 60vw;
-    height: 55vh;
+    width: 300px;
+    height: 350px;
+    &__picture {
+      width: 260px;
+      &__container {
+        height: 260px;
+      }
+    }
   }
   .second_btn {
     &--hidden {

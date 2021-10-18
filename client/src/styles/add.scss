@@ -69,7 +69,7 @@ $mainColor: turquoise;
       }
       &__input {
         flex: 2;
-        width: 70%;
+
         padding: 2% 20% 2% 2%;
         border: 2px black solid;
         border-radius: 9px;
@@ -82,13 +82,21 @@ $mainColor: turquoise;
           height: 150px;
           resize: none;
         }
+        &--name {
+          border: 2px black solid;
+          border-radius: 9px;
+          padding: 2% 50px 1% 5px;
+          margin: 0 0 0 2%;
+        }
       }
     }
   }
   .container {
-    img {
-      width: 250px;
-      height: 350px;
+    &__img {
+      margin-left: 25px;
+      margin-bottom: 10px;
+      width: 270px;
+      height: 400px;
     }
     &__button {
       display: flex;
@@ -96,6 +104,7 @@ $mainColor: turquoise;
       justify-content: flex-start;
       align-items: center;
       button {
+        margin: 0 auto;
         width: 40%;
         padding: 9px 10px 9px;
         border-radius: 2rem;
@@ -113,7 +122,6 @@ $mainColor: turquoise;
     justify-content: center;
     align-items: center;
     &__btns {
-      padding: 10px 20px;
       margin: 0 10px 30px 10px;
       width: 20%;
       padding: 9px 10px 9px;
@@ -141,8 +149,11 @@ $mainColor: turquoise;
       &__input {
         width: 150px;
         &--calendar {
-          margin: 0 1% 0 1%;
+          margin: 0 1% 0 10%;
           padding: 4% 3% 2% 3%;
+        }
+        &--name {
+          width: 189px;
         }
       }
     }
@@ -155,7 +166,6 @@ $mainColor: turquoise;
     }
     &__button {
       button {
-        padding: 10px 20px;
         margin: 5px 10px 0 40px;
         width: 50%;
         padding: 9px 10px 9px;
@@ -233,19 +243,29 @@ $mainColor: turquoise;
         &--calendar {
           padding: 10px 10px;
         }
+        &--name {
+          margin: 0 auto 10px;
+          width: 300px;
+        }
       }
     }
   }
   .container {
-    img {
+    &__img {
+      margin: 0 auto;
       width: 300px;
     }
     &__button {
       &--mobile {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 20px;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin: 10px 0 50px 0;
+
+        button {
+          margin: 0 0 0 150px;
+          padding: 10px 15px 10px 15px;
+        }
       }
     }
   }
