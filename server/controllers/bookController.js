@@ -25,8 +25,8 @@ module.exports = {
       where: {
         [Op.or]: [
           { title: { [Op.substring]: query } },
-          { '$Author.first_name$': { [Op.substring]: query } },
-          { '$Author.last_name$': { [Op.substring]: query } },
+          { '$Author.firstName$': { [Op.substring]: query } },
+          { '$Author.lastName$': { [Op.substring]: query } },
         ],
       },
     })
