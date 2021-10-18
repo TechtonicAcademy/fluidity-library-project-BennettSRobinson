@@ -34,7 +34,7 @@ const BookShelf = () => {
           <>
             {books.map(
               ({ id, title, picture, Author: { firstName, lastName } }) => {
-                const name = firstName + lastName;
+                const name = `${firstName} ${lastName}`;
                 return (
                   <Book
                     key={id}

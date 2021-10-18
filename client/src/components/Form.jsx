@@ -9,7 +9,7 @@ import Empty from '../assets/pics/empty.jpeg';
 const Form = ({ id, form }) => {
   const [book, setBook] = useState({ rating: 0 });
   const [image, setImage] = useState(Empty);
-  const [author, setAuthor] = useState();
+  const [author, setAuthor] = useState({});
   const [file, setFile] = useState();
   const history = useHistory();
 
@@ -21,7 +21,7 @@ const Form = ({ id, form }) => {
         // eslint-disable-next-line no-shadow
         .then(({ data }) => {
           setBook(data);
-          setAuthor(data.Author.name);
+          setAuthor(data.Author);
           setImage(data.picture);
         })
         .catch((err) => console.log(err));
@@ -29,13 +29,15 @@ const Form = ({ id, form }) => {
   }, [id]);
 
   const titleRef = useRef();
-  const authorRef = useRef();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
   const summaryRef = useRef();
   const publishedRef = useRef();
   const pagesRef = useRef();
   const pictureRef = useRef();
 
   const { title, summary, published, pages, rating } = book;
+  const { firstName, lastName } = author;
 
   // eslint-disable-next-line consistent-return
   const handleSubmit = async (event) => {
@@ -44,24 +46,23 @@ const Form = ({ id, form }) => {
     // // new valeus for the book details if not its value is the old value
     const AEBook = {
       title: titleRef.current.value.trim() || title,
-      name: authorRef.current.value.trim() || author,
+      first: firstNameRef.current.value.trim() || author,
+      last: lastNameRef.current.value.trim() || author,
       summary: summaryRef.current.value.trim() || summary,
       published: publishedRef.current.value || published,
       pages: pagesRef.current.value || pages,
       rating,
     };
 
-    const {
-      title: newTitle,
-      name: newAuthor,
-      published: newPublished,
-    } = AEBook;
+    const { title: newTitle, first, last, published: newPublished } = AEBook;
 
-    if (!newTitle || !newAuthor) {
+    if (!newTitle || !first || !last) {
       // eslint-disable-next-line no-alert
       return alert(`Invalid submission: \n
       Title: ${newTitle ? '✅' : '❌'}\n
-      Author: ${newAuthor ? '✅' : '❌'}\n
+      Author: First Name: ${first ? '✅' : '❌'}, Last Name: ${
+        last ? '✅' : '❌'
+      }\n
       Please enter the required inputs.`);
     }
     if (newPublished) {
@@ -129,24 +130,26 @@ const Form = ({ id, form }) => {
               <input
                 id="first"
                 type="text"
+                placeholder="First Name..."
                 className="addBook__forms__input--name"
                 defaultValue={
                   // eslint-disable-next-line no-nested-ternary
-                  form === 'edit' ? author : ''
+                  form === 'edit' ? firstName : ''
                 }
                 name="author"
-                ref={authorRef}
+                ref={firstNameRef}
               />
               <input
                 id="last"
                 type="text"
+                placeholder="Last Name..."
                 className="addBook__forms__input--name"
                 defaultValue={
                   // eslint-disable-next-line no-nested-ternary
-                  form === 'edit' ? author : ''
+                  form === 'edit' ? lastName : ''
                 }
                 name="author"
-                ref={authorRef}
+                ref={lastNameRef}
               />
             </label>
             <article className="addBook__wrapper addBook__wrapper--mobile">
